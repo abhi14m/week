@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Rose For You 🌹</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=Great+Vibes&display=swap');
 
         * {
             margin: 0;
@@ -13,36 +13,49 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #000;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            color: white;
+        :root {
+            --rose-pink: #ff1493;
+            --soft-pink: #ff69b4;
+            --deep-pink: #c71585;
+            --white: #ffffff;
+            --off-white: #fef5f8;
+            --text-dark: #2d2d2d;
+            --text-light: rgba(255, 255, 255, 0.95);
         }
 
-        /* Animated gradient background */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #000;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animated background */
         .gradient-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #1a0e1e, #2d1a3d, #1e1a2d, #1a1e2d);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
             z-index: 0;
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
+            0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
-        /* Particle canvas */
-        #particleCanvas {
+        /* Floating particles */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
@@ -52,576 +65,400 @@
             pointer-events: none;
         }
 
-        /* Stars background */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .star {
+        .particle {
             position: absolute;
-            background: white;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.8), transparent);
             border-radius: 50%;
-            animation: twinkle 3s infinite;
+            animation: float 10s infinite;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-100px) translateX(50px) scale(1.2); opacity: 0.6; }
         }
 
-        /* Opening Scene with 3D effect */
-        .opening-scene {
+        /* Opening screen */
+        .opening-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #ff1493, #8b008b, #000);
+            background: linear-gradient(135deg, #1a0e1e 0%, #2d1a3d 50%, #1e1a2d 100%);
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            perspective: 1000px;
+            transition: opacity 1s ease, visibility 1s ease;
         }
 
-        .opening-scene.hidden {
+        .opening-screen.hidden {
             opacity: 0;
-            transform: scale(0.5) rotateY(180deg);
             visibility: hidden;
         }
 
-        .opening-rose-3d {
-            font-size: 10em;
-            animation: rotate3D 4s infinite;
-            filter: drop-shadow(0 0 50px rgba(255, 20, 147, 0.8));
-            transform-style: preserve-3d;
+        .opening-rose {
+            font-size: 12em;
+            animation: roseFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 60px rgba(255, 20, 147, 0.8));
         }
 
-        @keyframes rotate3D {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg); }
-            25% { transform: rotateY(90deg) rotateX(10deg); }
-            50% { transform: rotateY(180deg) rotateX(0deg); }
-            75% { transform: rotateY(270deg) rotateX(-10deg); }
+        @keyframes roseFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
         }
 
-        .opening-text {
-            color: white;
-            font-size: 3em;
-            text-align: center;
-            margin: 40px 0;
+        .opening-title {
             font-family: 'Great Vibes', cursive;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            animation: glow 2s infinite alternate;
+            font-size: 4em;
+            color: var(--white);
+            margin: 30px 0;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+            animation: titleGlow 2s ease-in-out infinite;
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 20, 147, 0.5); }
-            to { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 20, 147, 1); }
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 30px rgba(255, 105, 180, 0.5); }
+            50% { text-shadow: 0 0 50px rgba(255, 105, 180, 1); }
         }
 
-        .start-button {
-            background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493);
-            background-size: 200% 200%;
-            color: white;
-            border: 3px solid white;
-            padding: 25px 60px;
-            font-size: 1.5em;
+        .enter-btn {
+            margin-top: 40px;
+            padding: 20px 60px;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--rose-pink), var(--deep-pink));
+            border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 0 40px rgba(255, 20, 147, 0.8);
             transition: all 0.3s ease;
-            font-weight: bold;
-            letter-spacing: 3px;
-            animation: buttonPulse 2s infinite, gradientMove 3s infinite;
-            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.4);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
         }
 
-        @keyframes buttonPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .enter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 60px rgba(255, 20, 147, 0.6);
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .start-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .start-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .start-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 60px rgba(255, 20, 147, 1);
-        }
-
-        /* Main Content */
-        .container {
+        /* Main container */
+        .main-container {
             position: relative;
             z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
             opacity: 0;
-            transition: opacity 2s ease;
+            transition: opacity 1.5s ease;
         }
 
-        .container.visible {
+        .main-container.visible {
             opacity: 1;
         }
 
-        /* Header with animation */
-        .header {
-            text-align: center;
-            margin: 60px 0;
-            animation: fadeInDown 2s ease;
-        }
-
-        .header h1 {
-            font-size: 5em;
-            background: linear-gradient(135deg, #ff1493, #ff69b4, #fff, #ff69b4, #ff1493);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientText 5s infinite;
-            font-family: 'Great Vibes', cursive;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 30px rgba(255, 20, 147, 0.5));
-        }
-
-        @keyframes gradientText {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .header .subtitle {
-            font-size: 1.8em;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* 3D Rose with advanced animations */
-        .rose-section {
-            text-align: center;
-            margin: 80px 0;
-            perspective: 1500px;
-        }
-
-        .rose-container-3d {
-            position: relative;
-            width: 400px;
-            height: 500px;
-            margin: 0 auto;
-            transform-style: preserve-3d;
-            animation: floatRotate 6s ease-in-out infinite;
-        }
-
-        @keyframes floatRotate {
-            0%, 100% { transform: translateY(0) rotateY(0deg); }
-            50% { transform: translateY(-20px) rotateY(10deg); }
-        }
-
-        .rose-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 20, 147, 0.6), transparent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-            filter: blur(40px);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
-        }
-
-        .svg-rose-wrapper {
-            position: relative;
-            z-index: 2;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            filter: drop-shadow(0 20px 40px rgba(255, 20, 147, 0.6));
-        }
-
-        .svg-rose-wrapper:hover {
-            transform: scale(1.1) rotateZ(5deg);
-            filter: drop-shadow(0 30px 60px rgba(255, 20, 147, 0.9));
-        }
-
-        .svg-rose-wrapper.picked {
-            animation: rosePicked 2s ease-in-out;
-        }
-
-        @keyframes rosePicked {
-            0% { transform: scale(1) rotateZ(0deg); }
-            25% { transform: scale(1.2) rotateZ(15deg) translateY(-50px); }
-            50% { transform: scale(1.1) rotateZ(-10deg) translateY(-30px); }
-            75% { transform: scale(1.15) rotateZ(5deg) translateY(-40px); }
-            100% { transform: scale(1.1) rotateZ(0deg) translateY(0); }
-        }
-
-        .pick-button {
-            background: linear-gradient(135deg, #ff1493, #ff69b4);
-            color: white;
-            border: none;
-            padding: 25px 60px;
-            font-size: 1.5em;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.5);
-            transition: all 0.3s ease;
-            font-weight: 600;
-            margin-top: 40px;
+        /* Hero section with large image */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
-            font-family: 'Poppins', sans-serif;
         }
 
-        .pick-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .pick-button:hover::before {
-            left: 100%;
-        }
-
-        .pick-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 50px rgba(255, 20, 147, 0.8);
-        }
-
-        .rose-message {
-            font-size: 1.5em;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
-            margin-top: 30px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease;
-        }
-
-        .rose-message.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Premium Photo Gallery with 3D cards */
-        .photo-gallery {
-            margin: 100px 0;
-            position: relative;
-        }
-
-        .gallery-title {
-            font-size: 3.5em;
+        .hero-content {
             text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 6em;
+            color: var(--white);
+            margin-bottom: 20px;
             background: linear-gradient(135deg, #ff1493, #ff69b4, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-family: 'Great Vibes', cursive;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
+            animation: fadeInDown 1.5s ease;
         }
 
-        .gallery-subtitle {
-            text-align: center;
-            font-size: 1.3em;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 60px;
-            font-family: 'Playfair Display', serif;
+        .hero-subtitle {
+            font-size: 1.8em;
+            color: var(--text-light);
+            font-weight: 300;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.5s ease 0.3s both;
         }
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 20px;
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--white);
+            font-size: 2em;
+            opacity: 0.7;
         }
 
-        .photo-card {
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+
+        /* Section container */
+        .section {
+            min-height: 100vh;
+            padding: 100px 20px;
             position: relative;
-            aspect-ratio: 3/4;
+        }
+
+        .section-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Image + Text layout */
+        .image-text-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 120px;
+            animation: fadeIn 1s ease;
+        }
+
+        .image-text-section.reverse {
+            direction: rtl;
+        }
+
+        .image-text-section.reverse > * {
+            direction: ltr;
+        }
+
+        .image-container {
+            position: relative;
             border-radius: 30px;
             overflow: hidden;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(138, 43, 226, 0.2));
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
         }
 
-        .photo-card::before {
-            content: '';
+        .image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), transparent);
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(138, 43, 226, 0.2));
             opacity: 0;
-            transition: opacity 0.5s;
-            z-index: 1;
+            transition: opacity 0.5s ease;
         }
 
-        .photo-card:hover {
-            transform: translateY(-20px) rotateX(5deg) rotateY(5deg) scale(1.05);
-            box-shadow: 0 30px 80px rgba(255, 20, 147, 0.5);
-        }
-
-        .photo-card:hover::before {
+        .image-container:hover .image-overlay {
             opacity: 1;
         }
 
-        .photo-inner {
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+        .text-content {
+            padding: 40px;
         }
 
-        .photo-frame-inner {
-            flex: 1;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 240, 245, 0.2));
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .photo-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.6s ease;
-        }
-
-        .photo-card:hover .photo-placeholder img {
-            transform: scale(1.1);
-        }
-
-        .photo-icon {
-            font-size: 4em;
-            margin-bottom: 15px;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-        }
-
-        .photo-text {
-            font-size: 1.2em;
+        .section-label {
+            font-size: 0.9em;
+            color: var(--soft-pink);
+            letter-spacing: 3px;
+            text-transform: uppercase;
             font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
-        .photo-caption {
-            margin-top: 15px;
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5em;
+            color: var(--white);
+            margin-bottom: 30px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .section-text {
+            font-size: 1.15em;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Photo gallery - masonry style */
+        .gallery-section {
+            padding: 120px 20px;
+        }
+
+        .gallery-header {
             text-align: center;
-            font-size: 1.1em;
-            color: white;
-            font-weight: 600;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 2;
-            position: relative;
+            margin-bottom: 80px;
         }
 
-        .photo-help-text {
-            font-size: 0.85em;
-            opacity: 0.7;
-            margin-top: 8px;
-        }
-
-        /* Premium Message Cards */
-        .message-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 60px;
-            margin: 60px 0;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .message-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 20, 147, 0.1), transparent);
-            animation: cardRotate 10s linear infinite;
-        }
-
-        @keyframes cardRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .message-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(255, 20, 147, 0.4);
-            border-color: rgba(255, 105, 180, 0.5);
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .message-card h2 {
-            font-size: 2.5em;
+        .gallery-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5em;
             background: linear-gradient(135deg, #ff1493, #ff69b4, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 25px;
-            font-family: 'Playfair Display', serif;
-            text-align: center;
+            margin-bottom: 20px;
         }
 
-        .message-card p {
-            font-size: 1.3em;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.9);
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
+        .gallery-subtitle {
+            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
         }
 
-        /* Love Letter Section */
-        .love-letter {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 80px 60px;
-            margin: 80px 0;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .masonry-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .masonry-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(255, 20, 147, 0.5);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .masonry-item.tall {
+            grid-row: span 2;
+        }
+
+        .masonry-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: var(--white);
+            font-size: 1.1em;
+            font-weight: 600;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .masonry-item:hover .masonry-caption {
+            transform: translateY(0);
+        }
+
+        /* Love letter section */
+        .letter-section {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(138, 43, 226, 0.1));
             position: relative;
         }
 
-        .love-letter h2 {
-            font-size: 3em;
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 80px 60px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .letter-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            text-align: center;
             background: linear-gradient(135deg, #ff1493, #fff, #ff69b4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 50px;
+        }
+
+        .letter-greeting {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: var(--soft-pink);
             text-align: center;
             margin-bottom: 40px;
-            font-family: 'Great Vibes', cursive;
         }
 
-        .letter-content {
-            font-size: 1.25em;
-            line-height: 2.2;
-            color: rgba(255, 255, 255, 0.95);
-        }
-
-        .letter-content p {
+        .letter-body p {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 2;
             margin-bottom: 30px;
-            text-indent: 50px;
-            animation: fadeIn 1s ease;
+            text-align: justify;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .signature {
+        .letter-signature {
             text-align: right;
-            font-size: 1.8em;
-            color: #ff69b4;
             font-family: 'Great Vibes', cursive;
-            margin-top: 50px;
+            font-size: 2.5em;
+            color: var(--soft-pink);
+            margin-top: 60px;
         }
 
-        /* Reasons Section with Cards */
+        /* Reasons grid */
+        .reasons-section {
+            padding: 120px 20px;
+        }
+
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 80px auto 0;
         }
 
         .reason-card {
-            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(138, 43, 226, 0.2));
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            padding: 40px;
+            padding: 50px;
             border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
         }
@@ -633,7 +470,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.2), transparent);
             transition: left 0.6s;
         }
 
@@ -642,66 +479,62 @@
         }
 
         .reason-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
+            border-color: rgba(255, 105, 180, 0.5);
             box-shadow: 0 20px 60px rgba(255, 20, 147, 0.4);
-            border-color: rgba(255, 105, 180, 0.6);
         }
 
         .reason-number {
-            font-size: 3em;
-            font-weight: bold;
+            font-size: 3.5em;
+            font-weight: 700;
             background: linear-gradient(135deg, #ff1493, #ff69b4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif;
         }
 
         .reason-text {
             font-size: 1.15em;
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 80px 20px;
-            margin-top: 100px;
+            padding: 100px 20px;
         }
 
-        .heart-animation {
-            font-size: 5em;
-            display: inline-block;
+        .footer-heart {
+            font-size: 6em;
             animation: heartBeat 1.5s infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8));
+            filter: drop-shadow(0 0 30px rgba(255, 20, 147, 0.8));
         }
 
         @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
-            10% { transform: scale(1.1); }
-            20% { transform: scale(1); }
-            30% { transform: scale(1.2); }
-            40% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
         }
 
         .footer-text {
-            font-size: 1.5em;
-            color: white;
-            margin: 20px 0;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            font-size: 1.8em;
+            color: var(--white);
+            margin: 30px 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
         }
 
-        .date-stamp {
-            font-size: 1.8em;
-            font-weight: bold;
+        .footer-date {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
             background: linear-gradient(135deg, #ff1493, #ff69b4, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-top: 30px;
-            font-family: 'Great Vibes', cursive;
+            margin-top: 20px;
         }
 
         /* Floating hearts on click */
@@ -724,19 +557,12 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 3em; }
-            .gallery-title { font-size: 2.5em; }
-            .opening-text { font-size: 2em; padding: 20px; }
-            .opening-rose-3d { font-size: 6em; }
-            .rose-container-3d { width: 300px; height: 400px; }
-            .message-card, .love-letter { padding: 40px 30px; }
-            .photo-grid { grid-template-columns: 1fr; }
-            .reasons-grid { grid-template-columns: 1fr; }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Loading animation */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-50px); }
             to { opacity: 1; transform: translateY(0); }
@@ -746,443 +572,337 @@
             from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 4em;
+            }
+            
+            .image-text-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .image-text-section.reverse {
+                direction: ltr;
+            }
+            
+            .section-title {
+                font-size: 2.5em;
+            }
+            
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .letter-container {
+                padding: 50px 30px;
+            }
+            
+            .opening-rose {
+                font-size: 8em;
+            }
+            
+            .opening-title {
+                font-size: 2.5em;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Animated gradient background -->
+    <!-- Animated background -->
     <div class="gradient-bg"></div>
 
-    <!-- Particle canvas -->
-    <canvas id="particleCanvas"></canvas>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
 
-    <!-- Stars -->
-    <div class="stars" id="stars"></div>
-
-    <!-- Opening Scene -->
-    <div class="opening-scene" id="openingScene">
-        <div class="opening-rose-3d">🌹</div>
-        <div class="opening-text">I have something magical for you...</div>
-        <button class="start-button" onclick="startExperience()">
-            <span style="position: relative; z-index: 2;">Open Your Gift</span>
-        </button>
+    <!-- Opening screen -->
+    <div class="opening-screen" id="openingScreen">
+        <div class="opening-rose">🌹</div>
+        <div class="opening-title">Something Special For You...</div>
+        <button class="enter-btn" onclick="enterSite()">Open Your Heart</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="container" id="mainContent">
-        <!-- Header -->
-        <div class="header">
-            <h1>A Rose For You</h1>
-            <p class="subtitle">Made with Love, Just For You 💖</p>
-        </div>
-
-        <!-- 3D Rose Section -->
-        <div class="rose-section">
-            <div class="rose-container-3d" id="roseContainer">
-                <div class="rose-glow"></div>
-                <div class="svg-rose-wrapper" id="roseWrapper" onclick="pickRose()">
-                    <svg width="400" height="500" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Glowing effect -->
-                        <defs>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                            <radialGradient id="petalGradient">
-                                <stop offset="0%" style="stop-color:#ff69b4;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#c71585;stop-opacity:1" />
-                            </radialGradient>
-                        </defs>
-                        
-                        <!-- Rose bloom with glow -->
-                        <g filter="url(#glow)">
-                            <ellipse cx="100" cy="80" rx="50" ry="40" fill="url(#petalGradient)" opacity="0.9"/>
-                            <ellipse cx="80" cy="75" rx="35" ry="30" fill="#ff1493" opacity="0.8"/>
-                            <ellipse cx="120" cy="75" rx="35" ry="30" fill="#ff1493" opacity="0.8"/>
-                            <ellipse cx="100" cy="65" rx="40" ry="32" fill="#ff69b4"/>
-                            <ellipse cx="100" cy="58" rx="30" ry="25" fill="#ff1493"/>
-                            <ellipse cx="100" cy="52" rx="20" ry="18" fill="#c71585"/>
-                            
-                            <!-- Outer petals -->
-                            <path d="M 60 75 Q 35 55 45 35 Q 60 50 70 70 Z" fill="#ff1493" opacity="0.7"/>
-                            <path d="M 140 75 Q 165 55 155 35 Q 140 50 130 70 Z" fill="#ff1493" opacity="0.7"/>
-                            <path d="M 80 45 Q 70 20 90 10 Q 88 30 85 48 Z" fill="#ff69b4" opacity="0.8"/>
-                            <path d="M 120 45 Q 130 20 110 10 Q 112 30 115 48 Z" fill="#ff69b4" opacity="0.8"/>
-                            <path d="M 100 35 Q 95 15 100 5 Q 105 15 100 35 Z" fill="#ff1493"/>
-                        </g>
-                        
-                        <!-- Stem with gradient -->
-                        <defs>
-                            <linearGradient id="stemGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:#228b22;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#0d4d0d;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="94" y="95" width="12" height="185" fill="url(#stemGradient)" rx="6"/>
-                        
-                        <!-- Leaves with detail -->
-                        <ellipse cx="70" cy="150" rx="28" ry="14" fill="#1a5c1a" transform="rotate(-35 70 150)"/>
-                        <ellipse cx="130" cy="180" rx="28" ry="14" fill="#1a5c1a" transform="rotate(35 130 180)"/>
-                        <ellipse cx="75" cy="210" rx="25" ry="12" fill="#1a5c1a" transform="rotate(-30 75 210)"/>
-                        
-                        <!-- Leaf veins -->
-                        <line x1="70" y1="145" x2="70" y2="155" stroke="#0d4d0d" stroke-width="1" transform="rotate(-35 70 150)"/>
-                        <line x1="130" y1="175" x2="130" y2="185" stroke="#0d4d0d" stroke-width="1" transform="rotate(35 130 180)"/>
-                        
-                        <!-- Thorns -->
-                        <path d="M 94 120 L 86 126 L 94 132 Z" fill="#0d4d0d"/>
-                        <path d="M 106 155 L 114 161 L 106 167 Z" fill="#0d4d0d"/>
-                        <path d="M 94 190 L 86 196 L 94 202 Z" fill="#0d4d0d"/>
-                    </svg>
-                </div>
+    <!-- Main content -->
+    <div class="main-container" id="mainContainer">
+        <!-- Hero section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">A Rose For You</h1>
+                <p class="hero-subtitle">A digital love letter, crafted with every beat of my heart 💕</p>
             </div>
-            <button class="pick-button" onclick="pickRose()">Accept This Rose 🌹</button>
-            <div class="rose-message" id="roseMessage">
-                Thank you for accepting my rose! 💕<br>
-                Just like this rose, my love for you blooms eternally ❤️
-            </div>
-        </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
 
-        <!-- Photo Gallery -->
-        <div class="photo-gallery">
-            <h2 class="gallery-title">You Light Up My World</h2>
-            <p class="gallery-subtitle">Every moment with you is a treasure ✨</p>
-            
-            <div class="photo-grid">
-                <div class="photo-card">
-                    <div class="photo-inner">
-                        <div class="photo-frame-inner">
-                            <div class="photo-placeholder">
-                                <img src="./images/smile.png" alt="Her beautiful smile">
-                            </div>
-                        </div>
-                        <div class="photo-caption">That smile that lights up my world</div>
+        <!-- Image + Text sections -->
+        <section class="section">
+            <div class="section-content">
+                <!-- Section 1 -->
+                <div class="image-text-section">
+                    <div class="image-container">
+                        <img src="./images/smile.png" alt="Your beautiful smile" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1000&fit=crop'">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="text-content">
+                        <span class="section-label">Chapter One</span>
+                        <h2 class="section-title">The Smile That Captured My Heart</h2>
+                        <p class="section-text">
+                            From the very first moment I saw you smile, I knew my world had changed forever. Your smile isn't just beautiful—it's the kind of radiance that makes everything else fade into the background. It's warmth on a cold day, sunshine breaking through clouds, and pure magic wrapped in one incredible expression.
+                        </p>
+                        <p class="section-text">
+                            Every time you laugh, my heart does this little dance. It's like you've unlocked a part of me I didn't know existed—a part that comes alive only when you're around. Your joy is contagious, your happiness is my happiness, and your smile... well, it's the most beautiful thing I've ever seen.
+                        </p>
                     </div>
                 </div>
 
-                <div class="photo-card">
-                    <div class="photo-inner">
-                        <div class="photo-frame-inner">
-                            <div class="photo-placeholder">
-                                <img src="./images/Perfect.png" alt="Her beautiful smile">
-                            </div>
-                        </div>
-                        <div class="photo-caption">Perfection in every way</div>
+                <!-- Section 2 -->
+                <div class="image-text-section reverse">
+                    <div class="image-container">
+                        <img src="./images/Perfect.png" alt="Perfection" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&h=1000&fit=crop'">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="text-content">
+                        <span class="section-label">Chapter Two</span>
+                        <h2 class="section-title">You Are My Definition of Perfect</h2>
+                        <p class="section-text">
+                            People say perfection doesn't exist, but they haven't met you. You're not perfect because you're flawless—you're perfect because every beautiful detail, every quirk, every little thing that makes you *you* is exactly what I love. Your imperfections are what make you real, relatable, and absolutely extraordinary.
+                        </p>
+                        <p class="section-text">
+                            The way you see the world, the kindness in your heart, the strength in your spirit—these aren't just qualities I admire. They're the reasons I wake up grateful every single day that you're in my life. You've shown me what it means to truly love someone, not for who you wish they were, but for exactly who they are.
+                        </p>
                     </div>
                 </div>
 
-                <div class="photo-card">
-                    <div class="photo-inner">
-                        <div class="photo-frame-inner">
-                            <div class="photo-placeholder">
-                                <img src="./images/elegant.png" alt="Her beautiful smile">
-                            </div>
-                        </div>
-                        <div class="photo-caption">You shine brighter than any star</div>
+                <!-- Section 3 -->
+                <div class="image-text-section">
+                    <div class="image-container">
+                        <img src="./images/elegant.png" alt="Elegance and grace" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1000&fit=crop'">
+                        <div class="image-overlay"></div>
                     </div>
-                </div>
-
-                <div class="photo-card">
-                    <div class="photo-inner">
-                        <div class="photo-frame-inner">
-                            <div class="photo-placeholder">
-                                <img src="./images/queen.png" alt="Her beautiful smile">
-                            </div>
-                        </div>
-                        <div class="photo-caption">The queen of my heart</div>
-                    </div>
-                </div>
-
-                <div class="photo-card">
-                    <div class="photo-inner">
-                        <div class="photo-frame-inner">
-                            <div class="photo-placeholder">
-                                <img src="./images/natural.png" alt="Her beautiful smile">
-                            </div>
-                        </div>
-                        <div class="photo-caption">Natural beauty, inside and out</div>
-                    </div>
-                </div>
-
-                <div class="photo-card">
-                    <div class="photo-inner">
-                        <div class="photo-frame-inner">
-                            <div class="photo-placeholder">
-                                <img src="./images/mine.png" alt="Her beautiful smile">
-                            </div>
-                        </div>
-                        <div class="photo-caption">Today, tomorrow, and always</div>
+                    <div class="text-content">
+                        <span class="section-label">Chapter Three</span>
+                        <h2 class="section-title">You Shine Brighter Than Stars</h2>
+                        <p class="section-text">
+                            There's an elegance about you that goes beyond appearance. It's in the way you carry yourself with grace, the way you handle challenges with strength, and the way you light up every room you enter. You don't just shine—you illuminate the lives of everyone around you, especially mine.
+                        </p>
+                        <p class="section-text">
+                            In a world full of ordinary moments, you make everything feel extraordinary. Your presence turns simple days into memories I'll cherish forever. You've taught me that true beauty comes from within, and yours radiates so brightly that it takes my breath away every single time.
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Love Letter -->
-        <div class="love-letter">
-            <h2>A Letter From My Heart</h2>
-            <div class="letter-content">
-                <p style="text-indent: 0; text-align: center; font-family: 'Great Vibes', cursive; font-size: 1.5em; color: #ff69b4;">
-                    My Dearest Love,
-                </p>
-                <p>
-                    On this special Rose Day, I wanted to create something as unique and beautiful as you are. This isn't just a website – it's a digital expression of my heart, a testament to the love I feel for you every single day.
-                </p>
-                <p>
-                    You've brought magic into my life. Every moment with you feels like a dream I never want to wake up from. Your laughter is the melody that plays in my heart, your smile is the sunshine that brightens my darkest days, and your love is the greatest gift I've ever received.
-                </p>
-                <p>
-                    This rose I'm giving you today represents all the beauty you've brought into my world. Like a rose, you're breathtakingly beautiful, delicate yet strong, and absolutely irreplaceable. You've shown me what it means to truly love and be loved.
-                </p>
-                <p>
-                    I promise to cherish you, to support your dreams, to stand by your side through every challenge, and to love you more with each passing day. You're not just my girlfriend – you're my best friend, my inspiration, my home, and my forever.
-                </p>
-                <p class="signature">
-                    Forever and Always Yours,<br>
-                    With All My Love ❤️
-                </p>
+        <!-- Photo gallery -->
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h2 class="gallery-title">Moments I Treasure</h2>
+                <p class="gallery-subtitle">Every photo tells a story of love ✨</p>
             </div>
-        </div>
+            <div class="masonry-grid">
+                <div class="masonry-item tall">
+                    <img src="./images/queen.png" alt="The queen of my heart" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600&h=900&fit=crop'">
+                    <div class="masonry-caption">The Queen of My Heart</div>
+                </div>
+                <div class="masonry-item">
+                    <img src="./images/natural.png" alt="Natural beauty" onerror="this.src='https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=600&h=400&fit=crop'">
+                    <div class="masonry-caption">Natural & Beautiful</div>
+                </div>
+                <div class="masonry-item">
+                    <img src="./images/mine.png" alt="Forever mine" onerror="this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=600&h=400&fit=crop'">
+                    <div class="masonry-caption">Today, Tomorrow, Always</div>
+                </div>
+                <div class="masonry-item tall">
+                    <img src="./images/smile.png" alt="That smile" onerror="this.src='https://images.unsplash.com/photo-1515077678510-ce3bdf418862?w=600&h=900&fit=crop'">
+                    <div class="masonry-caption">That Magical Smile</div>
+                </div>
+                <div class="masonry-item">
+                    <img src="./images/Perfect.png" alt="Perfect moments" onerror="this.src='https://images.unsplash.com/photo-1496440737103-cd596325d314?w=600&h=400&fit=crop'">
+                    <div class="masonry-caption">Perfect in Every Way</div>
+                </div>
+                <div class="masonry-item">
+                    <img src="./images/elegant.png" alt="Elegance" onerror="this.src='https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&h=400&fit=crop'">
+                    <div class="masonry-caption">Pure Elegance</div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Reasons Section -->
-        <div class="message-card">
-            <div class="card-content">
-                <h2>Why You're So Special To Me</h2>
+        <!-- Love letter -->
+        <section class="letter-section">
+            <div class="letter-container">
+                <h2 class="letter-title">A Letter From My Heart</h2>
+                <p class="letter-greeting">My Dearest Love,</p>
+                <div class="letter-body">
+                    <p>
+                        On this special Rose Day, I wanted to create something as unique and beautiful as you are. This isn't just a website—it's a digital expression of my heart, a testament to the love I feel for you every single day.
+                    </p>
+                    <p>
+                        You've brought magic into my life. Every moment with you feels like a dream I never want to wake up from. Your laughter is the melody that plays in my heart, your smile is the sunshine that brightens my darkest days, and your love is the greatest gift I've ever received.
+                    </p>
+                    <p>
+                        This rose I'm giving you today represents all the beauty you've brought into my world. Like a rose, you're breathtakingly beautiful, delicate yet strong, and absolutely irreplaceable. You've shown me what it means to truly love and be loved.
+                    </p>
+                    <p>
+                        I promise to cherish you, to support your dreams, to stand by your side through every challenge, and to love you more with each passing day. You're not just my girlfriend—you're my best friend, my inspiration, my home, and my forever.
+                    </p>
+                </div>
+                <p class="letter-signature">Forever and Always Yours ❤️</p>
+            </div>
+        </section>
+
+        <!-- Reasons section -->
+        <section class="reasons-section">
+            <div class="section-content">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h2 class="gallery-title">Why You Mean Everything To Me</h2>
+                    <p class="gallery-subtitle">A thousand reasons, but here are just a few</p>
+                </div>
                 <div class="reasons-grid">
                     <div class="reason-card">
                         <div class="reason-number">01</div>
                         <div class="reason-text">
-                            Your smile has the power to transform my entire world. When you're happy, I'm happy. When you laugh, my heart dances. You radiate pure joy and beauty.
+                            Your smile has the power to transform my entire world. When you're happy, I'm happy. When you laugh, my heart dances. You radiate pure joy and beauty that makes everything better.
                         </div>
                     </div>
-
                     <div class="reason-card">
                         <div class="reason-number">02</div>
                         <div class="reason-text">
-                            You understand me like no one else ever has. With you, I can be completely authentic, vulnerable, and real. You see all of me and love me anyway.
+                            You understand me like no one else ever has. With you, I can be completely authentic, vulnerable, and real. You see all of me and love me anyway—that's the greatest gift anyone could give.
                         </div>
                     </div>
-
                     <div class="reason-card">
                         <div class="reason-number">03</div>
                         <div class="reason-text">
-                            Your kindness and compassion inspire me daily. The way you care for others, your gentle heart, and your beautiful soul make you truly one of a kind.
+                            Your kindness and compassion inspire me daily. The way you care for others, your gentle heart, and your beautiful soul make you truly one of a kind. You make the world a better place.
                         </div>
                     </div>
-
                     <div class="reason-card">
                         <div class="reason-number">04</div>
                         <div class="reason-text">
-                            You make every moment magical. Whether we're on an adventure or just sitting together in comfortable silence, being with you feels like home.
+                            You make every moment magical. Whether we're on an adventure or just sitting together in comfortable silence, being with you feels like home. You are my safe place, my comfort, my peace.
                         </div>
                     </div>
-
                     <div class="reason-card">
                         <div class="reason-number">05</div>
                         <div class="reason-text">
-                            You believe in me and support my dreams unconditionally. Your encouragement gives me strength, and your faith in me makes me want to be better every day.
+                            You believe in me and support my dreams unconditionally. Your encouragement gives me strength, and your faith in me makes me want to be better every day. You're my biggest cheerleader.
                         </div>
                     </div>
-
                     <div class="reason-card">
                         <div class="reason-number">06</div>
                         <div class="reason-text">
-                            You're simply YOU. Unique, irreplaceable, and absolutely perfect. I love everything that makes you who you are – every quirk, every dream, every beautiful detail.
+                            You're simply YOU. Unique, irreplaceable, and absolutely perfect. I love everything that makes you who you are—every quirk, every dream, every beautiful detail. You are my everything.
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Footer -->
-        <div class="footer">
-            <div class="heart-animation">❤️</div>
+        <footer class="footer">
+            <div class="footer-heart">❤️</div>
             <p class="footer-text">You are my today and all of my tomorrows</p>
             <p class="footer-text">In a garden full of roses, you'd still be the one I'd pick</p>
-            <p class="date-stamp">Rose Day 2026</p>
-            <p style="margin-top: 40px; font-size: 1.1em; opacity: 0.8;">Made with infinite love, just for you 🌹</p>
-        </div>
+            <p class="footer-date">Rose Day 2026</p>
+            <p style="color: rgba(255,255,255,0.6); margin-top: 40px; font-size: 1.1em;">
+                Made with infinite love, just for you 🌹
+            </p>
+        </footer>
     </div>
 
     <script>
-        // Particle system
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 50;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.color = `rgba(255, ${Math.random() * 100 + 105}, ${Math.random() * 100 + 180}, ${Math.random() * 0.5 + 0.3})`;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
             }
         }
 
-        function initParticles() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                
-                // Connect particles
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 150) {
-                        ctx.strokeStyle = `rgba(255, 105, 180, ${0.2 - distance / 750})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            
-            requestAnimationFrame(animateParticles);
-        }
-
-        // Create stars
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Start experience
-        function startExperience() {
-            const opening = document.getElementById('openingScene');
-            const mainContent = document.getElementById('mainContent');
+        // Enter site
+        function enterSite() {
+            const opening = document.getElementById('openingScreen');
+            const main = document.getElementById('mainContainer');
             
             opening.classList.add('hidden');
             setTimeout(() => {
-                mainContent.classList.add('visible');
-                createMassiveHeartExplosion();
-            }, 1500);
+                main.classList.add('visible');
+                createHeartExplosion();
+            }, 1000);
         }
 
-        // Pick rose
-        let rosePicked = false;
-        function pickRose() {
-            if (rosePicked) return;
-            
-            rosePicked = true;
-            const wrapper = document.getElementById('roseWrapper');
-            const message = document.getElementById('roseMessage');
-            
-            wrapper.classList.add('picked');
-            message.classList.add('show');
-            
-            // Massive heart explosion
-            createMassiveHeartExplosion();
-            
-            // Confetti
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => createClickHeart(), i * 30);
-            }
-        }
-
-        // Create click hearts
-        function createClickHeart(x, y) {
-            const hearts = ['❤️', '💕', '💖', '💗', '💝', '🌹', '✨', '💫', '⭐'];
+        // Create floating heart
+        function createFloatingHeart(x, y) {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝', '🌹', '✨'];
             const heart = document.createElement('div');
             heart.className = 'click-heart';
             heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.style.left = (x || Math.random() * window.innerWidth) + 'px';
-            heart.style.top = (y || Math.random() * window.innerHeight) + 'px';
-            
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
             document.body.appendChild(heart);
-            
             setTimeout(() => heart.remove(), 3000);
         }
 
-        // Massive heart explosion
-        function createMassiveHeartExplosion() {
-            for (let i = 0; i < 150; i++) {
+        // Heart explosion
+        function createHeartExplosion() {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
-                    createClickHeart(
-                        window.innerWidth / 2 + (Math.random() - 0.5) * window.innerWidth,
-                        window.innerHeight / 2 + (Math.random() - 0.5) * window.innerHeight
+                    createFloatingHeart(
+                        centerX + (Math.random() - 0.5) * 400,
+                        centerY + (Math.random() - 0.5) * 400
                     );
-                }, i * 20);
+                }, i * 30);
             }
         }
 
-        // Click anywhere for hearts
-        document.addEventListener('click', function(e) {
-            if (Math.random() > 0.5) {
-                createClickHeart(e.clientX, e.clientY);
+        // Click for hearts
+        document.addEventListener('click', (e) => {
+            if (Math.random() > 0.7) {
+                createFloatingHeart(e.clientX, e.clientY);
             }
         });
 
-        // Window resize
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
         // Initialize
-        createStars();
-        initParticles();
-        animateParticles();
+        createParticles();
 
-        // Photo instructions
-        console.log(`
-            🌹 TO ADD HER PHOTOS:
-            
-            Replace the photo-placeholder div with:
-            <img src="photo.jpg" alt="Description">
-            
-            Example:
-            <div class="photo-placeholder">
-                <img src="her-smile.jpg" alt="Her beautiful smile">
-            </div>
-            
-            Save and refresh! 💖
-        `);
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 1s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.image-text-section, .reason-card, .masonry-item').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
