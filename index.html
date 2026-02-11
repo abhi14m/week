@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promises Woven in Time 🤝</title>
+    <title>My Promises to You 💕</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Spectral:wght@300;400;600&family=Allura&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap');
 
         * {
             margin: 0;
@@ -14,20 +14,20 @@
         }
 
         :root {
-            --gold: #d4af37;
-            --deep-gold: #b8941e;
-            --soft-cream: #faf8f3;
-            --warm-white: #fffef9;
-            --charcoal: #1a1a1a;
-            --soft-gray: #4a4a4a;
-            --promise-blue: #2c5f7c;
-            --sky-blue: #87ceeb;
-            --silver: #c0c0c0;
+            --rose-gold: #e8b4a8;
+            --deep-rose: #c9858d;
+            --soft-pink: #fef0ee;
+            --warm-cream: #fff9f7;
+            --charcoal: #2a2a2a;
+            --soft-gray: #6a6a6a;
+            --love-red: #d4526e;
+            --peach: #ffcdb2;
+            --lavender: #e8c1d5;
         }
 
         body {
-            font-family: 'Spectral', serif;
-            background: var(--warm-white);
+            font-family: 'Quicksand', sans-serif;
+            background: var(--warm-cream);
             color: var(--charcoal);
             overflow-x: hidden;
             line-height: 1.7;
@@ -37,60 +37,50 @@
             scroll-behavior: smooth;
         }
 
-        /* Geometric background pattern */
-        .geometric-bg {
+        /* Floating hearts background */
+        .hearts-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--gold) 35px, var(--gold) 37px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--gold) 35px, var(--gold) 37px);
             z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Floating promise rings animation */
-        .promise-rings {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
             pointer-events: none;
             overflow: hidden;
         }
 
-        .ring {
+        .heart {
             position: absolute;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            opacity: 0.15;
-            animation: ringFloat 25s infinite ease-in-out;
+            font-size: 2em;
+            opacity: 0.1;
+            animation: floatHeart 20s infinite ease-in-out;
         }
 
-        @keyframes ringFloat {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg) scale(1);
-                opacity: 0.05;
+        @keyframes floatHeart {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
             }
-            50% { 
-                transform: translate(100px, -150px) rotate(180deg) scale(1.3);
-                opacity: 0.2;
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.15;
+            }
+            100% { 
+                transform: translateY(-100vh) rotate(360deg) scale(1.5);
+                opacity: 0;
             }
         }
 
-        /* Opening screen - Promise Seal */
+        /* Opening screen */
         .opening-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--charcoal) 0%, var(--soft-gray) 100%);
+            background: linear-gradient(135deg, var(--love-red) 0%, var(--deep-rose) 100%);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -104,121 +94,52 @@
             visibility: hidden;
         }
 
-        .promise-seal {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            animation: sealReveal 3s ease-in-out infinite;
+        .beating-heart {
+            font-size: 10em;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
         }
 
-        .seal-circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            border: 8px solid var(--gold);
-            border-radius: 50%;
-            animation: sealPulse 2s ease-in-out infinite;
-        }
-
-        .seal-inner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 140px;
-            height: 140px;
-            border: 4px solid var(--gold);
-            border-radius: 50%;
-            animation: sealPulse 2s ease-in-out infinite 0.5s;
-        }
-
-        .seal-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5em;
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
-        }
-
-        @keyframes sealPulse {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.8;
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes sealReveal {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(5deg); }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.1); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            40% { transform: scale(1); }
         }
 
         .opening-title {
-            font-family: 'Allura', cursive;
-            font-size: 4.5em;
-            color: var(--gold);
-            margin: 60px 0 20px;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
-            animation: titleShimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes titleShimmer {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; text-shadow: 0 0 60px rgba(212, 175, 55, 0.8); }
+            font-family: 'Pacifico', cursive;
+            font-size: 4em;
+            color: white;
+            margin: 40px 0 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .opening-subtitle {
-            font-size: 1.4em;
-            color: var(--soft-cream);
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+            margin-bottom: 60px;
         }
 
         .enter-btn {
-            margin-top: 60px;
-            padding: 22px 70px;
-            font-size: 1.2em;
+            padding: 20px 60px;
+            font-size: 1.3em;
             font-weight: 600;
-            color: var(--charcoal);
-            background: var(--gold);
-            border: 3px solid var(--deep-gold);
-            border-radius: 0;
+            color: var(--love-red);
+            background: white;
+            border: none;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.4s ease;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-family: 'Spectral', serif;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .enter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .enter-btn:hover::before {
-            left: 100%;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .enter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
-            background: var(--deep-gold);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         /* Main container */
@@ -233,128 +154,78 @@
             opacity: 1;
         }
 
-        /* Hero section - Interlocked promises */
+        /* Hero section */
         .hero-section {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
-            background: linear-gradient(to bottom, var(--warm-white), var(--soft-cream));
+            background: linear-gradient(to bottom, var(--warm-cream), var(--soft-pink));
+            padding: 20px;
         }
 
         .hero-content {
             text-align: center;
             z-index: 2;
-            max-width: 1100px;
-            padding: 60px;
+            max-width: 900px;
         }
 
-        .hero-promises {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 50px;
-            animation: promiseBind 4s ease-in-out infinite;
+        .hero-emoji {
+            font-size: 8em;
+            margin-bottom: 30px;
+            animation: gentle-bounce 2s ease-in-out infinite;
         }
 
-        .promise-link {
-            width: 100px;
-            height: 100px;
-            border: 6px solid var(--gold);
-            border-radius: 50%;
-            position: relative;
-            animation: linkFloat 3s ease-in-out infinite;
-        }
-
-        .promise-link:nth-child(2) {
-            margin-left: -30px;
-            animation-delay: 0.5s;
-        }
-
-        @keyframes linkFloat {
+        @keyframes gentle-bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes promiseBind {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: translateY(-20px); }
         }
 
         .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 6em;
-            color: var(--charcoal);
-            margin-bottom: 30px;
-            font-weight: 900;
-            line-height: 1.1;
-            animation: fadeInUp 1.5s ease;
-            letter-spacing: -2px;
-        }
-
-        .hero-title .promise-word {
-            color: var(--gold);
-            font-style: italic;
-            display: inline-block;
-            animation: wordShine 3s ease-in-out infinite;
-        }
-
-        @keyframes wordShine {
-            0%, 100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+            font-family: 'Pacifico', cursive;
+            font-size: 5em;
+            color: var(--love-red);
+            margin-bottom: 25px;
+            line-height: 1.2;
         }
 
         .hero-subtitle {
             font-size: 1.8em;
             color: var(--soft-gray);
-            font-weight: 300;
-            margin-bottom: 50px;
-            animation: fadeInUp 1.5s ease 0.3s both;
-            letter-spacing: 1px;
+            font-weight: 400;
+            margin-bottom: 40px;
         }
 
-        .scroll-indicator {
+        .scroll-hint {
             position: absolute;
-            bottom: 50px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            animation: scrollBounce 2s infinite;
-            color: var(--gold);
-            font-size: 2.5em;
-            opacity: 0.7;
+            animation: bounce-arrow 2s infinite;
+            color: var(--deep-rose);
+            font-size: 2em;
         }
 
-        @keyframes scrollBounce {
+        @keyframes bounce-arrow {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-25px); }
+            50% { transform: translateX(-50%) translateY(-15px); }
         }
 
-        /* Section container */
+        /* Section styling */
         .section {
-            min-height: 100vh;
-            padding: 120px 20px;
+            padding: 80px 20px;
             position: relative;
-            background: var(--warm-white);
-        }
-
-        .section:nth-child(even) {
-            background: var(--soft-cream);
         }
 
         .section-content {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        /* Promise sections with meaningful animations */
+        /* Promise sections with unique layouts */
         .promise-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            margin-bottom: 150px;
+            margin-bottom: 80px;
             opacity: 0;
             transform: translateY(50px);
             transition: all 1s ease;
@@ -365,615 +236,738 @@
             transform: translateY(0);
         }
 
-        .promise-section.reverse {
-            direction: rtl;
+        /* Promise 1: Polaroid style with rotation */
+        .promise-1 {
+            display: flex;
+            gap: 40px;
+            align-items: center;
         }
 
-        .promise-section.reverse > * {
-            direction: ltr;
+        .promise-1 .image-container {
+            flex: 1;
+            perspective: 1000px;
         }
 
-        /* Image animations with meaning */
-        .promise-image-container {
+        .polaroid {
+            background: white;
+            padding: 20px 20px 80px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transform: rotate(-5deg);
+            transition: all 0.6s ease;
             position: relative;
-            overflow: hidden;
-            border-radius: 0;
-            box-shadow: 
-                20px 20px 0 rgba(212, 175, 55, 0.2),
-                40px 40px 0 rgba(212, 175, 55, 0.1);
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: var(--soft-gray);
+            text-align: center;
+        }
+
+        /* Promise 2: Heart-shaped clip with pulse */
+        .promise-2 {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+
+        .promise-2 .image-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .heart-frame {
+            position: relative;
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+
+        .heart-frame img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            clip-path: polygon(
+                50% 10%, 58% 5%, 67% 5%, 75% 10%, 80% 18%, 
+                83% 28%, 83% 40%, 80% 50%, 75% 58%, 68% 65%, 
+                60% 72%, 50% 85%, 40% 72%, 32% 65%, 25% 58%, 
+                20% 50%, 17% 40%, 17% 28%, 20% 18%, 25% 10%, 
+                33% 5%, 42% 5%
+            );
+            filter: brightness(1.05);
             transition: all 0.6s ease;
         }
 
-        .promise-image-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-            z-index: 2;
-            transition: left 0.8s;
+        .heart-frame:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.15);
         }
 
-        .promise-image-container:hover::before {
-            left: 100%;
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
-        .promise-image-container:hover {
-            transform: translate(-10px, -10px);
-            box-shadow: 
-                30px 30px 0 rgba(212, 175, 55, 0.3),
-                50px 50px 0 rgba(212, 175, 55, 0.15);
+        /* Promise 3: Circular vignette with spin */
+        .promise-3 {
+            display: flex;
+            gap: 40px;
+            align-items: center;
         }
 
-        .promise-image-container img {
-            width: 100%;
-            height: 650px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease;
-        }
-
-        .promise-image-container:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Specific animations for each promise */
-        .promise-1 .promise-image-container {
-            animation: smileGrow 3s ease-in-out infinite;
-        }
-
-        @keyframes smileGrow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.1); }
-        }
-
-        .promise-2 .promise-image-container {
-            animation: strengthPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes strengthPulse {
-            0%, 100% { 
-                box-shadow: 
-                    20px 20px 0 rgba(212, 175, 55, 0.2),
-                    40px 40px 0 rgba(212, 175, 55, 0.1);
-            }
-            50% { 
-                box-shadow: 
-                    25px 25px 0 rgba(212, 175, 55, 0.3),
-                    45px 45px 0 rgba(212, 175, 55, 0.15);
-            }
-        }
-
-        .promise-3 .promise-image-container {
-            animation: eleganceFloat 5s ease-in-out infinite;
-        }
-
-        @keyframes eleganceFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Promise text content */
-        .promise-content {
-            padding: 40px;
+        .promise-3 .image-container {
+            flex: 1;
             position: relative;
         }
 
-        .promise-number {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            font-size: 12em;
-            font-weight: 900;
-            color: var(--gold);
-            opacity: 0.08;
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-            pointer-events: none;
+        .circle-frame {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
         }
 
-        .promise-label {
-            font-size: 0.85em;
-            color: var(--gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 25px;
+        .circle-frame::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px dashed var(--rose-gold);
+            border-radius: 50%;
+            animation: rotate-border 30s linear infinite;
+        }
+
+        @keyframes rotate-border {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .circle-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 15px solid white;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+            transition: all 0.6s ease;
+        }
+
+        .circle-frame:hover img {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Promise content styling */
+        .promise-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .promise-emoji {
+            font-size: 4em;
+            margin-bottom: 20px;
             display: inline-block;
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 8px;
+            animation: emoji-wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes emoji-wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
 
         .promise-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8em;
-            color: var(--charcoal);
-            margin-bottom: 35px;
-            line-height: 1.15;
-            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            color: var(--love-red);
+            margin-bottom: 25px;
+            line-height: 1.2;
         }
 
         .promise-text {
-            font-size: 1.25em;
-            color: var(--soft-gray);
-            line-height: 2;
-            margin-bottom: 25px;
-            font-weight: 300;
+            font-size: 1.3em;
+            color: var(--charcoal);
+            line-height: 1.9;
+            margin-bottom: 20px;
+            font-weight: 400;
         }
 
-        .promise-text::first-letter {
-            font-size: 3em;
-            font-weight: 600;
-            color: var(--gold);
-            float: left;
-            line-height: 0.9;
-            margin: 8px 12px 0 0;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Vow section with intertwined design */
-        .vow-section {
-            padding: 150px 20px;
-            background: var(--charcoal);
+        /* Love letter section */
+        .love-letter-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--soft-pink), var(--lavender));
             position: relative;
             overflow: hidden;
         }
 
-        .vow-section::before {
-            content: '';
+        .love-letter-section::before {
+            content: '💕';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212, 175, 55, 0.05) 2px, rgba(212, 175, 55, 0.05) 4px);
-            pointer-events: none;
+            font-size: 30em;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .vow-container {
-            max-width: 1000px;
+        .letter-container {
+            max-width: 800px;
             margin: 0 auto;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
-            backdrop-filter: blur(10px);
-            border: 3px solid var(--gold);
-            padding: 100px 80px;
+            background: white;
+            padding: 60px 50px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
             position: relative;
         }
 
-        .vow-container::before,
-        .vow-container::after {
-            content: '❝';
-            position: absolute;
-            font-size: 10em;
-            color: var(--gold);
-            opacity: 0.2;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .vow-container::before {
-            top: 20px;
-            left: 30px;
-        }
-
-        .vow-container::after {
-            content: '❞';
-            bottom: 20px;
-            right: 30px;
-        }
-
-        .vow-title {
-            font-family: 'Allura', cursive;
-            font-size: 5em;
-            text-align: center;
-            color: var(--gold);
-            margin-bottom: 60px;
-            animation: vowGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes vowGlow {
-            0%, 100% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
-            50% { text-shadow: 0 0 50px rgba(212, 175, 55, 0.7); }
-        }
-
-        .vow-greeting {
-            font-family: 'Allura', cursive;
-            font-size: 3em;
-            color: var(--soft-cream);
+        .letter-header {
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .vow-body p {
-            font-size: 1.3em;
-            color: var(--soft-cream);
-            line-height: 2.2;
-            margin-bottom: 35px;
+        .letter-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4em;
+            color: var(--love-red);
+            margin-bottom: 15px;
+        }
+
+        .letter-to {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: var(--soft-gray);
+        }
+
+        .letter-body p {
+            font-size: 1.25em;
+            color: var(--charcoal);
+            line-height: 2;
+            margin-bottom: 30px;
             text-align: justify;
         }
 
-        .vow-signature {
+        .letter-signature {
             text-align: right;
-            font-family: 'Allura', cursive;
-            font-size: 3em;
-            color: var(--gold);
-            margin-top: 70px;
-            animation: signatureWrite 2s ease-in-out;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: var(--love-red);
+            margin-top: 50px;
         }
 
-        @keyframes signatureWrite {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Gallery - Promise moments */
+        /* Gallery section */
         .gallery-section {
-            padding: 150px 20px;
-            background: var(--warm-white);
+            padding: 80px 20px;
+            background: var(--warm-cream);
         }
 
         .gallery-header {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 60px;
         }
 
         .gallery-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 5.5em;
-            color: var(--charcoal);
+            font-family: 'Pacifico', cursive;
+            font-size: 4.5em;
+            color: var(--love-red);
             margin-bottom: 20px;
-            font-weight: 900;
-        }
-
-        .gallery-title .gold-word {
-            color: var(--gold);
-            font-style: italic;
         }
 
         .gallery-subtitle {
             font-size: 1.6em;
             color: var(--soft-gray);
-            font-weight: 300;
-            letter-spacing: 2px;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1400px;
+            gap: 30px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
+            border-radius: 20px;
             cursor: pointer;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.4), transparent);
-            transform: translate(-50%, -50%);
-            transition: all 0.6s ease;
-            z-index: 2;
-            border-radius: 50%;
-        }
-
-        .gallery-item:hover::before {
-            width: 500px;
-            height: 500px;
         }
 
         .gallery-item:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 70px rgba(212, 175, 55, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(212, 69, 110, 0.3);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.15) rotate(2deg);
+            transform: scale(1.15);
         }
 
         .gallery-item.tall {
             grid-row: span 2;
         }
 
-        .gallery-item.tall img {
-            height: 100%;
-        }
-
-        .gallery-caption {
+        .gallery-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 40px;
-            background: linear-gradient(to top, rgba(26, 26, 26, 0.95), transparent);
-            color: var(--gold);
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
             font-size: 1.2em;
-            font-weight: 600;
+            font-family: 'Dancing Script', cursive;
             transform: translateY(100%);
-            transition: transform 0.5s ease;
-            z-index: 3;
-            letter-spacing: 1px;
+            transition: transform 0.4s ease;
         }
 
-        .gallery-item:hover .gallery-caption {
+        .gallery-item:hover .gallery-overlay {
             transform: translateY(0);
         }
 
-        /* Six Promises Grid */
-        .promises-grid-section {
-            padding: 150px 20px;
-            background: var(--soft-cream);
+        /* Six promises */
+        .six-promises-section {
+            padding: 80px 20px;
+            background: var(--soft-pink);
         }
 
         .promises-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            max-width: 1300px;
-            margin: 100px auto 0;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto 0;
         }
 
         .promise-card {
-            background: var(--warm-white);
-            padding: 60px;
-            border: 3px solid var(--gold);
-            position: relative;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            position: relative;
             overflow: hidden;
         }
 
         .promise-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: all 0.8s ease;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(232, 180, 168, 0.2), transparent);
+            transform: scale(0);
+            transition: transform 0.6s ease;
         }
 
         .promise-card:hover::before {
-            width: 100%;
-            left: 100%;
+            transform: scale(1);
         }
 
         .promise-card:hover {
-            transform: translateX(10px);
-            box-shadow: -20px 20px 0 rgba(212, 175, 55, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(212, 69, 110, 0.2);
+        }
+
+        .card-emoji {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
         .card-number {
-            font-size: 4em;
-            font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 25px;
-            font-family: 'Playfair Display', serif;
-            border-bottom: 3px solid var(--gold);
-            display: inline-block;
-            padding-bottom: 10px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: var(--rose-gold);
+            margin-bottom: 20px;
         }
 
         .card-promise {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: var(--charcoal);
-            line-height: 2;
-            font-weight: 400;
+            line-height: 1.9;
         }
 
-        /* Binding Promise Section */
-        .binding-section {
-            padding: 150px 20px;
-            background: linear-gradient(135deg, var(--charcoal), var(--soft-gray));
+        /* Forever section */
+        .forever-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--love-red), var(--deep-rose));
+            text-align: center;
+            color: white;
             position: relative;
             overflow: hidden;
         }
 
-        .binding-rings {
+        .forever-section::before {
+            content: '∞';
             position: absolute;
+            font-size: 40em;
+            opacity: 0.05;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            opacity: 0.1;
+            transform: translate(-50%, -50%) rotate(-15deg);
         }
 
-        .binding-ring {
-            position: absolute;
-            border: 4px solid var(--gold);
-            border-radius: 50%;
-            animation: bindingRotate 20s linear infinite;
-        }
-
-        .binding-ring:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            top: 0;
-            left: 0;
-        }
-
-        .binding-ring:nth-child(2) {
-            width: 450px;
-            height: 450px;
-            top: 75px;
-            left: 75px;
-            animation-direction: reverse;
-        }
-
-        .binding-ring:nth-child(3) {
-            width: 300px;
-            height: 300px;
-            top: 150px;
-            left: 150px;
-        }
-
-        @keyframes bindingRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .binding-content {
+        .forever-content {
             max-width: 900px;
             margin: 0 auto;
-            text-align: center;
             position: relative;
             z-index: 2;
         }
 
-        .binding-title {
-            font-family: 'Playfair Display', serif;
+        .forever-title {
+            font-family: 'Pacifico', cursive;
             font-size: 5em;
-            color: var(--gold);
-            margin-bottom: 40px;
-            font-weight: 900;
+            margin-bottom: 30px;
         }
 
-        .binding-text {
-            font-size: 1.8em;
-            color: var(--soft-cream);
-            line-height: 2.2;
-            font-weight: 300;
-            margin-bottom: 30px;
+        .forever-text {
+            font-size: 1.6em;
+            line-height: 2;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 120px 20px;
-            background: var(--warm-white);
-            position: relative;
+            padding: 60px 20px;
+            background: var(--warm-cream);
         }
 
-        .footer-symbol {
-            font-size: 8em;
-            margin-bottom: 40px;
-            animation: symbolFloat 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
-        }
-
-        @keyframes symbolFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+        .footer-heart {
+            font-size: 6em;
+            margin-bottom: 30px;
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
         .footer-text {
-            font-size: 2em;
+            font-size: 1.8em;
             color: var(--charcoal);
-            margin: 25px 0;
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
+            margin: 20px 0;
+            font-family: 'Quicksand', sans-serif;
         }
 
         .footer-date {
-            font-family: 'Allura', cursive;
-            font-size: 3.5em;
-            color: var(--gold);
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            color: var(--love-red);
             margin-top: 30px;
         }
 
-        .footer-note {
-            color: var(--soft-gray);
-            margin-top: 50px;
-            font-size: 1.2em;
-            font-style: italic;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        /* Responsive - Mobile First */
         @media (max-width: 768px) {
+            .opening-title {
+                font-size: 2.2em;
+                padding: 0 20px;
+            }
+
+            .opening-subtitle {
+                font-size: 1.1em;
+                padding: 0 20px;
+            }
+
+            .beating-heart {
+                font-size: 6em;
+            }
+
+            .enter-btn {
+                padding: 15px 40px;
+                font-size: 1.1em;
+            }
+
+            .hero-emoji {
+                font-size: 5em;
+            }
+
             .hero-title {
-                font-size: 3.5em;
+                font-size: 2.5em;
+                padding: 0 15px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2em;
+                padding: 0 20px;
+            }
+
+            .section {
+                padding: 60px 15px;
             }
             
-            .promise-section {
-                grid-template-columns: 1fr;
-                gap: 50px;
+            .promise-1, .promise-2, .promise-3 {
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 60px;
             }
-            
-            .promise-section.reverse {
-                direction: ltr;
+
+            .promise-content {
+                padding: 20px;
+            }
+
+            .promise-emoji {
+                font-size: 3em;
             }
             
             .promise-title {
-                font-size: 2.5em;
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+
+            .promise-text {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+
+            /* Polaroid mobile */
+            .polaroid {
+                padding: 15px 15px 60px 15px;
+            }
+
+            .polaroid img {
+                height: 350px;
+            }
+
+            .polaroid-caption {
+                font-size: 1.3em;
+                bottom: 15px;
+            }
+
+            /* Heart frame mobile */
+            .heart-frame img {
+                height: 400px;
+            }
+
+            /* Circle frame mobile */
+            .circle-frame {
+                width: 320px;
+                height: 320px;
+            }
+
+            .circle-frame img {
+                border: 10px solid white;
             }
             
             .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
+            }
+
+            .gallery-section {
+                padding: 80px 15px;
+            }
+
+            .gallery-header {
+                margin-bottom: 50px;
+            }
+
+            .gallery-title {
+                font-size: 2.5em;
+                padding: 0 15px;
+            }
+
+            .gallery-subtitle {
+                font-size: 1.2em;
+                padding: 0 15px;
             }
             
             .promises-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
+                margin: 50px auto 0;
+            }
+
+            .promise-card {
+                padding: 35px 25px;
+            }
+
+            .card-emoji {
+                font-size: 2.5em;
+            }
+
+            .card-number {
+                font-size: 1.8em;
+            }
+
+            .card-promise {
+                font-size: 1.05em;
+            }
+
+            .six-promises-section {
+                padding: 80px 15px;
             }
             
-            .vow-container {
-                padding: 60px 40px;
+            .love-letter-section {
+                padding: 80px 15px;
             }
-            
+
+            .letter-container {
+                padding: 40px 25px;
+            }
+
+            .letter-title {
+                font-size: 2.5em;
+            }
+
+            .letter-to {
+                font-size: 1.8em;
+            }
+
+            .letter-body p {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+
+            .letter-signature {
+                font-size: 2em;
+                margin-top: 30px;
+            }
+
+            .forever-section {
+                padding: 80px 15px;
+            }
+
+            .forever-title {
+                font-size: 3em;
+                padding: 0 15px;
+            }
+
+            .forever-text {
+                font-size: 1.2em;
+                line-height: 1.8;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+
+            .footer {
+                padding: 60px 15px;
+            }
+
+            .footer-heart {
+                font-size: 4em;
+            }
+
+            .footer-text {
+                font-size: 1.3em;
+                padding: 0 15px;
+            }
+
+            .footer-date {
+                font-size: 2.2em;
+            }
+
+            .scroll-hint {
+                bottom: 20px;
+                font-size: 1.5em;
+            }
+
+            /* Compact animations for mobile */
+            .gallery-overlay {
+                padding: 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
             .opening-title {
-                font-size: 3em;
+                font-size: 1.8em;
             }
 
-            .promise-seal {
-                width: 200px;
-                height: 200px;
+            .beating-heart {
+                font-size: 5em;
             }
 
-            .seal-icon {
-                font-size: 3em;
+            .hero-title {
+                font-size: 2em;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1em;
+            }
+
+            .promise-title {
+                font-size: 1.8em;
+            }
+
+            .promise-text {
+                font-size: 1em;
+            }
+
+            .polaroid img {
+                height: 280px;
+            }
+
+            .heart-frame img {
+                height: 320px;
+            }
+
+            .circle-frame {
+                width: 280px;
+                height: 280px;
+            }
+
+            .gallery-title {
+                font-size: 2em;
+            }
+
+            .letter-title {
+                font-size: 2em;
+            }
+
+            .letter-to {
+                font-size: 1.5em;
+            }
+
+            .forever-title {
+                font-size: 2.5em;
+            }
+
+            .forever-text {
+                font-size: 1.1em;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Geometric background -->
-    <div class="geometric-bg"></div>
-
-    <!-- Floating promise rings -->
-    <div class="promise-rings" id="promiseRings"></div>
+    <!-- Floating hearts -->
+    <div class="hearts-bg" id="heartsBg"></div>
 
     <!-- Opening screen -->
     <div class="opening-screen" id="openingScreen">
-        <div class="promise-seal">
-            <div class="seal-circle"></div>
-            <div class="seal-inner"></div>
-            <div class="seal-icon">🤝</div>
-        </div>
-        <div class="opening-title">Sealed With Promise</div>
-        <p class="opening-subtitle">A Sacred Bond</p>
-        <button class="enter-btn" onclick="enterSite()">Unveil The Promises</button>
+        <div class="beating-heart">💕</div>
+        <div class="opening-title">My Heart's Promise</div>
+        <p class="opening-subtitle">A love letter written in promises</p>
+        <button class="enter-btn" onclick="enterSite()">Open Your Heart 💝</button>
     </div>
 
     <!-- Main content -->
@@ -981,232 +975,238 @@
         <!-- Hero section -->
         <section class="hero-section">
             <div class="hero-content">
-                <div class="hero-promises">
-                    <div class="promise-link"></div>
-                    <div class="promise-link"></div>
-                </div>
-                <h1 class="hero-title">Promises <span class="promise-word">Woven</span> in Time</h1>
-                <p class="hero-subtitle">Eternal vows bound by love, sealed with devotion</p>
+                <div class="hero-emoji">💖</div>
+                <h1 class="hero-title">Hey Beautiful!</h1>
+                <p class="hero-subtitle">Here are my promises to you, straight from my heart...</p>
             </div>
-            <div class="scroll-indicator">↓</div>
+            <div class="scroll-hint">↓</div>
         </section>
 
         <!-- Promise sections -->
         <section class="section">
             <div class="section-content">
-                <!-- Promise 1: The Smile - Joy Promise -->
+                <!-- Promise 1: Your Smile -->
                 <div class="promise-section promise-1">
-                    <div class="promise-image-container">
-                        <img src="./images/smile.png" alt="Your radiant smile" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1000&fit=crop'">
+                    <div class="image-container">
+                        <div class="polaroid">
+                            <img src="./images/smile.png" alt="Your beautiful smile" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1000&fit=crop'">
+                            <div class="polaroid-caption">Your smile = My world ✨</div>
+                        </div>
                     </div>
                     <div class="promise-content">
-                        <div class="promise-number">01</div>
-                        <span class="promise-label">The Joy Promise</span>
-                        <h2 class="promise-title">To Keep Your Smile Alive</h2>
+                        <div class="promise-emoji">😊</div>
+                        <h2 class="promise-title">I promise to keep you smiling</h2>
                         <p class="promise-text">
-                            I promise to be the reason for your smile every single day. Your joy isn't just beautiful—it's my life's mission. When you smile, the world becomes brighter, and I vow to fill our days with laughter, warmth, and countless moments of pure happiness.
+                            You know what? Your smile literally lights up my entire day. Like, I'm not even exaggerating! Every single time I see you smile, my heart does this little happy dance, and I can't help but smile back like an idiot.
                         </p>
                         <p class="promise-text">
-                            Through every sunrise and sunset, I will work to ensure that your heart remains as light and radiant as your smile. Your happiness is my compass, and I promise to never let a day pass without giving you a reason to grin from ear to ear.
+                            So here's my promise, babe: I'm gonna do everything in my power to keep that beautiful smile on your face. Whether it's sending you silly memes at 2 AM, surprising you with your favorite snacks, or just being there to make you laugh when you need it most – your happiness is literally my favorite thing in the whole world. 💕
                         </p>
                     </div>
                 </div>
 
-                <!-- Promise 2: Perfection - Strength Promise -->
-                <div class="promise-section promise-2 reverse">
-                    <div class="promise-image-container">
-                        <img src="./images/Perfect.png" alt="Unshakeable strength" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&h=1000&fit=crop'">
+                <!-- Promise 2: Strength -->
+                <div class="promise-section promise-2">
+                    <div class="image-container">
+                        <div class="heart-frame">
+                            <img src="./images/Perfect.png" alt="My rock" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&h=1000&fit=crop'">
+                        </div>
                     </div>
                     <div class="promise-content">
-                        <div class="promise-number">02</div>
-                        <span class="promise-label">The Strength Promise</span>
-                        <h2 class="promise-title">To Stand Beside You Always</h2>
+                        <div class="promise-emoji">💪</div>
+                        <h2 class="promise-title">I promise to be your rock</h2>
                         <p class="promise-text">
-                            I promise to be your rock, your shelter, and your unwavering support. In times of storm and sunshine alike, I will stand firmly by your side. You are perfect not because you're flawless, but because every part of you—strengths and vulnerabilities—makes you wholly magnificent.
+                            Listen, I know life can be tough sometimes. We all have those days where everything feels too heavy, you know? But here's the thing – you never have to carry that weight alone. Not anymore.
                         </p>
                         <p class="promise-text">
-                            When the world feels heavy, lean on me. When challenges arise, we'll face them together. I vow to be the strength you need when you feel weak, and to celebrate the incredible strength you already possess. Together, we are unbreakable.
+                            I promise to be right there beside you, always. When you're feeling weak, lean on me. When you're doubting yourself, I'll remind you how incredible you are. When the world gets too loud, I'll be your peace. You're so much stronger than you think, and even on your worst days, I'll be here reminding you of that. We're in this together, babe. Always. 💪❤️
                         </p>
                     </div>
                 </div>
 
-                <!-- Promise 3: Elegance - Honor Promise -->
+                <!-- Promise 3: Cherish -->
                 <div class="promise-section promise-3">
-                    <div class="promise-image-container">
-                        <img src="./images/elegant.png" alt="Graceful devotion" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1000&fit=crop'">
+                    <div class="image-container">
+                        <div class="circle-frame">
+                            <img src="./images/elegant.png" alt="My precious one" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1000&fit=crop'">
+                        </div>
                     </div>
                     <div class="promise-content">
-                        <div class="promise-number">03</div>
-                        <span class="promise-label">The Honor Promise</span>
-                        <h2 class="promise-title">To Cherish Your Grace</h2>
+                        <div class="promise-emoji">👑</div>
+                        <h2 class="promise-title">I promise to cherish every part of you</h2>
                         <p class="promise-text">
-                            I promise to honor every aspect of who you are—your elegance, your wisdom, your gentle heart. You carry yourself with a grace that inspires me daily, and I vow to cherish and protect the beautiful soul you are. Your dignity and worth are sacred to me.
+                            Okay, so here's something I need you to understand: You're not just beautiful – you're absolutely breathtaking. And I'm not just talking about how you look (though wow, seriously WOW), but everything about who you are.
                         </p>
                         <p class="promise-text">
-                            In my eyes, you will always be treated with the respect, admiration, and reverence you deserve. I promise to see you, truly see you, in all your magnificence, and to make sure you feel valued, appreciated, and loved every moment we share.
+                            Your quirky laugh, the way you scrunch your nose when you're thinking, your weird obsessions, your insecurities, your dreams, your fears – all of it. Every single piece of you is precious to me. I promise to treat your heart with the gentleness it deserves, to respect you always, and to make sure you feel valued and loved every single day. You deserve the world, and I'm gonna spend forever trying to give it to you. 👑💕
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sacred Vow Letter -->
-        <section class="vow-section">
-            <div class="vow-container">
-                <h2 class="vow-title">Sacred Vows</h2>
-                <p class="vow-greeting">To My Beloved,</p>
-                <div class="vow-body">
+        <!-- Love letter -->
+        <section class="love-letter-section">
+            <div class="letter-container">
+                <div class="letter-header">
+                    <h2 class="letter-title">A Letter to You</h2>
+                    <p class="letter-to">To the one who owns my heart 💝</p>
+                </div>
+                <div class="letter-body">
                     <p>
-                        On this Promise Day, I stand before you—not just with words, but with a heart overflowing with commitment. These promises aren't merely spoken; they are woven into the very fabric of my being, etched into my soul with permanence that transcends time.
+                        Hey love,
                     </p>
                     <p>
-                        I promise to love you in ways both grand and subtle. To celebrate your victories as if they were my own, and to hold you gently through every disappointment. I vow to be your safe harbor in life's storms, your loudest cheerleader in moments of triumph, and your most patient listener when words are hard to find.
+                        I know I'm not always great with words, but on this Promise Day, I wanted to pour my heart out to you. These aren't just empty promises written down to sound romantic – these are real, from-the-bottom-of-my-heart commitments that I'm making to you.
                     </p>
                     <p>
-                        These promises are binding—not as chains, but as golden threads that connect our hearts across distance, time, and circumstance. They are my covenant to you: to grow alongside you, to choose you daily, to honor the sacred trust you've placed in me.
+                        Every single day with you feels like a gift. You make me want to be better, do better, love better. And I promise you this: I'm going to wake up every morning and choose you. Choose us. Choose this beautiful thing we're building together.
                     </p>
                     <p>
-                        Every promise I make is a seed planted in the garden of our future. I will nurture them with action, water them with dedication, and watch as they blossom into a lifetime of shared dreams, unwavering support, and unconditional love.
+                        You deserve someone who sees you – really sees you – and loves every single thing they see. Someone who celebrates your victories like they're their own and holds you tight through your struggles. Someone who makes you feel safe, cherished, and absolutely adored.
+                    </p>
+                    <p>
+                        I want to be that someone. Actually, scratch that – I AM that someone. And these promises? They're not for today or tomorrow. They're for every single day we have together, for as long as you'll have me.
+                    </p>
+                    <p>
+                        Thank you for being you. Thank you for letting me love you. Thank you for being my person. 💕
                     </p>
                 </div>
-                <p class="vow-signature">Eternally Bound to You 🤝</p>
+                <p class="letter-signature">Forever yours 💖</p>
             </div>
         </section>
 
         <!-- Photo gallery -->
         <section class="gallery-section">
             <div class="gallery-header">
-                <h2 class="gallery-title">Promised <span class="gold-word">Moments</span></h2>
-                <p class="gallery-subtitle">Each memory, a promise kept</p>
+                <h2 class="gallery-title">Our Moments Together</h2>
+                <p class="gallery-subtitle">Every picture tells our story 📸</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item tall">
-                    <img src="./images/queen.png" alt="My forever queen" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600&h=900&fit=crop'">
-                    <div class="gallery-caption">My Vow to Honor You</div>
+                    <img src="./images/queen.png" alt="My queen" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600&h=900&fit=crop'">
+                    <div class="gallery-overlay">You're my forever queen 👑</div>
                 </div>
                 <div class="gallery-item">
                     <img src="./images/natural.png" alt="Natural beauty" onerror="this.src='https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=600&h=400&fit=crop'">
-                    <div class="gallery-caption">Authentic Love, Always</div>
+                    <div class="gallery-overlay">Naturally perfect 🌸</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="./images/mine.png" alt="Forever bound" onerror="this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=600&h=400&fit=crop'">
-                    <div class="gallery-caption">Today & All Tomorrows</div>
+                    <img src="./images/mine.png" alt="Mine forever" onerror="this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=600&h=400&fit=crop'">
+                    <div class="gallery-overlay">My one and only 💕</div>
                 </div>
                 <div class="gallery-item tall">
-                    <img src="./images/smile.png" alt="Joy promised" onerror="this.src='https://images.unsplash.com/photo-1515077678510-ce3bdf418862?w=600&h=900&fit=crop'">
-                    <div class="gallery-caption">Your Joy, My Purpose</div>
+                    <img src="./images/smile.png" alt="That smile" onerror="this.src='https://images.unsplash.com/photo-1515077678510-ce3bdf418862?w=600&h=900&fit=crop'">
+                    <div class="gallery-overlay">This smile melts my heart 😍</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="./images/Perfect.png" alt="Perfect unity" onerror="this.src='https://images.unsplash.com/photo-1496440737103-cd596325d314?w=600&h=400&fit=crop'">
-                    <div class="gallery-caption">Perfectly Imperfect Together</div>
+                    <img src="./images/Perfect.png" alt="Perfect" onerror="this.src='https://images.unsplash.com/photo-1496440737103-cd596325d314?w=600&h=400&fit=crop'">
+                    <div class="gallery-overlay">Perfectly us ❤️</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="./images/elegant.png" alt="Graceful promises" onerror="this.src='https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&h=400&fit=crop'">
-                    <div class="gallery-caption">Elegance in Every Vow</div>
+                    <img src="./images/elegant.png" alt="Elegant" onerror="this.src='https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&h=400&fit=crop'">
+                    <div class="gallery-overlay">Grace personified ✨</div>
                 </div>
             </div>
         </section>
 
-        <!-- Six Promises Grid -->
-        <section class="promises-grid-section">
+        <!-- Six promises -->
+        <section class="six-promises-section">
             <div class="section-content">
-                <div style="text-align: center; margin-bottom: 80px;">
-                    <h2 class="gallery-title">Six <span class="gold-word">Sacred</span> Promises</h2>
-                    <p class="gallery-subtitle">Bound by devotion, sealed with love</p>
+                <div class="gallery-header">
+                    <h2 class="gallery-title">Six Promises from My Heart</h2>
+                    <p class="gallery-subtitle">These are my vows to you 💝</p>
                 </div>
                 <div class="promises-grid">
                     <div class="promise-card">
-                        <div class="card-number">I</div>
+                        <div class="card-emoji">💕</div>
+                        <div class="card-number">Promise One</div>
                         <div class="card-promise">
-                            I promise to love you unconditionally—not for who I wish you to be, but for who you truly are. Your flaws are beautiful, your quirks are treasures, and every part of you deserves to be celebrated.
+                            I promise to love you exactly as you are – with all your perfections, imperfections, quirks, and everything in between. You don't need to change a single thing. You're already everything I want.
                         </div>
                     </div>
                     <div class="promise-card">
-                        <div class="card-number">II</div>
+                        <div class="card-emoji">👂</div>
+                        <div class="card-number">Promise Two</div>
                         <div class="card-promise">
-                            I promise to listen with my whole heart. To hear not just your words, but the emotions beneath them. Your thoughts, feelings, and dreams will always have a sacred space in my attention.
+                            I promise to really listen to you – not just hear your words, but understand your heart. Your thoughts, feelings, and dreams matter to me more than anything else in this world.
                         </div>
                     </div>
                     <div class="promise-card">
-                        <div class="card-number">III</div>
+                        <div class="card-emoji">🌱</div>
+                        <div class="card-number">Promise Three</div>
                         <div class="card-promise">
-                            I promise to grow with you, not apart from you. As life changes us, I will evolve alongside you, adapting, learning, and building a future that honors both our individual growth and our shared journey.
+                            I promise to grow with you, not apart. As we both change and evolve, I'll make sure we're doing it together, building a future that makes both our hearts happy.
                         </div>
                     </div>
                     <div class="promise-card">
-                        <div class="card-number">IV</div>
+                        <div class="card-emoji">🛡️</div>
+                        <div class="card-number">Promise Four</div>
                         <div class="card-promise">
-                            I promise to protect your heart with the tenderness it deserves. I will guard your trust carefully, speak truthfully always, and create a love that feels like the safest place you've ever known.
+                            I promise to protect your heart like it's the most precious thing in the universe (because it is). I'll be honest with you, gentle with you, and create a love that feels like home.
                         </div>
                     </div>
                     <div class="promise-card">
-                        <div class="card-number">V</div>
+                        <div class="card-emoji">🌅</div>
+                        <div class="card-number">Promise Five</div>
                         <div class="card-promise">
-                            I promise to choose you every single day. Love is not just a feeling but a daily decision, and I commit to waking up each morning and choosing us, choosing this bond, choosing forever with you.
+                            I promise to choose you every single day. Love isn't just butterflies – it's waking up every morning and deciding "yes, you, always you." And that's exactly what I'm committing to.
                         </div>
                     </div>
                     <div class="promise-card">
-                        <div class="card-number">VI</div>
+                        <div class="card-emoji">💍</div>
+                        <div class="card-number">Promise Six</div>
                         <div class="card-promise">
-                            I promise that these words are more than promises—they are my sacred vows. They are the foundation upon which I will build our life together, the unwavering truth of my devotion to you.
+                            I promise that these aren't just pretty words. These promises are my real, genuine commitment to you – the foundation of everything I want to build with you. This is forever, babe.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Binding Promise Section -->
-        <section class="binding-section">
-            <div class="binding-rings">
-                <div class="binding-ring"></div>
-                <div class="binding-ring"></div>
-                <div class="binding-ring"></div>
-            </div>
-            <div class="binding-content">
-                <h2 class="binding-title">Eternally Intertwined</h2>
-                <p class="binding-text">
-                    Like rings that interlock, our promises bind us together in an unbreakable circle of love and commitment.
+        <!-- Forever section -->
+        <section class="forever-section">
+            <div class="forever-content">
+                <h2 class="forever-title">You & Me = Forever</h2>
+                <p class="forever-text">
+                    Like infinity, my love for you has no end. No beginning. Just endless devotion, endless care, endless us.
                 </p>
-                <p class="binding-text">
-                    No beginning, no end—just an infinite journey of devotion, partnership, and unwavering faith in what we are building together.
+                <p class="forever-text">
+                    These promises aren't contracts – they're my heart speaking to yours, promising to love you better with each passing day.
                 </p>
-                <p class="binding-text">
-                    These promises are my solemn oath, my sacred covenant, my heart's truest declaration: I am yours, you are mine, and together we are forever.
+                <p class="forever-text">
+                    So here's to us, to our journey, to every moment we'll share. Thank you for being mine. Thank you for letting me be yours. 💕
                 </p>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-symbol">🤝</div>
-            <p class="footer-text">Promises Made, Promises Kept</p>
-            <p class="footer-text">In every word, in every breath, in every heartbeat</p>
+            <div class="footer-heart">💖</div>
+            <p class="footer-text">These promises are forever</p>
+            <p class="footer-text">Sealed with all my love</p>
             <p class="footer-date">Promise Day 2026</p>
-            <p class="footer-note">
-                Sealed with infinite devotion and boundless love
-            </p>
         </footer>
     </div>
 
     <script>
-        // Create floating promise rings
-        function createPromiseRings() {
-            const container = document.getElementById('promiseRings');
-            for (let i = 0; i < 8; i++) {
-                const ring = document.createElement('div');
-                ring.className = 'ring';
-                const size = Math.random() * 150 + 80;
-                ring.style.left = Math.random() * 100 + '%';
-                ring.style.top = Math.random() * 100 + '%';
-                ring.style.width = size + 'px';
-                ring.style.height = size + 'px';
-                ring.style.animationDelay = Math.random() * 5 + 's';
-                ring.style.animationDuration = (Math.random() * 15 + 20) + 's';
-                container.appendChild(ring);
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            const hearts = ['💕', '💖', '💗', '💝', '💓', '💞'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                container.appendChild(heart);
             }
         }
 
-        // Enter site with promise seal animation
+        // Enter site
         function enterSite() {
             const opening = document.getElementById('openingScreen');
             const main = document.getElementById('mainContainer');
@@ -1218,9 +1218,9 @@
         }
 
         // Initialize
-        createPromiseRings();
+        createHearts();
 
-        // Scroll reveal for promise sections
+        // Scroll reveal
         const observerOptions = {
             threshold: 0.2,
             rootMargin: '0px 0px -100px 0px'
@@ -1234,35 +1234,12 @@
             });
         }, observerOptions);
 
-        // Observe all promise sections
+        // Observe sections
         document.querySelectorAll('.promise-section').forEach(section => {
             observer.observe(section);
         });
 
-        // Observe promise cards with staggered animation
-        document.querySelectorAll('.promise-card').forEach((card, index) => {
-            card.style.transitionDelay = (index * 0.1) + 's';
-            observer.observe(card);
-        });
-
-        // Add visible class to cards on scroll
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.promise-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.8s ease';
-            cardObserver.observe(card);
-        });
-
-        // Gallery items fade in
+        // Gallery items animation
         document.querySelectorAll('.gallery-item').forEach((item, index) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
@@ -1279,6 +1256,25 @@
             }, { threshold: 0.1 });
             
             itemObserver.observe(item);
+        });
+
+        // Promise cards animation
+        document.querySelectorAll('.promise-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.8s ease';
+            card.style.transitionDelay = (index * 0.15) + 's';
+            
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cardObserver.observe(card);
         });
     </script>
 </body>
