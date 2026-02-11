@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Promises to You 💕</title>
+    <title>Hug Day - Wrapped in Your Love 🤗</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Caveat:wght@400;600;700&display=swap');
 
         * {
             margin: 0;
@@ -14,31 +14,30 @@
         }
 
         :root {
-            --rose-gold: #e8b4a8;
-            --deep-rose: #c9858d;
-            --soft-pink: #fef0ee;
-            --warm-cream: #fff9f7;
-            --charcoal: #2a2a2a;
-            --soft-gray: #6a6a6a;
-            --love-red: #d4526e;
-            --peach: #ffcdb2;
-            --lavender: #e8c1d5;
+            --warm-orange: #ff9a56;
+            --soft-yellow: #ffd93d;
+            --cozy-brown: #8b6f47;
+            --cream: #fff8e7;
+            --light-cream: #fffdf7;
+            --peach: #ffb088;
+            --charcoal: #2d2d2d;
+            --soft-gray: #666;
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: var(--warm-cream);
+            font-family: 'Nunito', sans-serif;
+            background: var(--light-cream);
             color: var(--charcoal);
             overflow-x: hidden;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         html {
             scroll-behavior: smooth;
         }
 
-        /* Floating hearts background */
-        .hearts-bg {
+        /* Floating warm elements */
+        .warm-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -49,26 +48,22 @@
             overflow: hidden;
         }
 
-        .heart {
+        .hug-emoji {
             position: absolute;
             font-size: 2em;
             opacity: 0.1;
-            animation: floatHeart 20s infinite ease-in-out;
+            animation: floatHug 15s infinite ease-in-out;
         }
 
-        @keyframes floatHeart {
+        @keyframes floatHug {
             0% { 
-                transform: translateY(100vh) rotate(0deg) scale(0);
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.15;
-            }
-            90% {
-                opacity: 0.15;
-            }
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
             100% { 
-                transform: translateY(-100vh) rotate(360deg) scale(1.5);
+                transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -80,13 +75,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--love-red) 0%, var(--deep-rose) 100%);
+            background: linear-gradient(135deg, var(--warm-orange), var(--soft-yellow));
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 1.5s ease, visibility 1.5s ease;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+            padding: 20px;
         }
 
         .opening-screen.hidden {
@@ -94,52 +90,49 @@
             visibility: hidden;
         }
 
-        .beating-heart {
-            font-size: 10em;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
+        .hug-animation {
+            font-size: 7em;
+            animation: hugBounce 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            10% { transform: scale(1.1); }
-            20% { transform: scale(1); }
-            30% { transform: scale(1.15); }
-            40% { transform: scale(1); }
+        @keyframes hugBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(-5deg); }
         }
 
         .opening-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 4em;
+            font-family: 'Caveat', cursive;
+            font-size: 3em;
             color: white;
-            margin: 40px 0 20px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin: 30px 0 15px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
         }
 
         .opening-subtitle {
-            font-size: 1.5em;
+            font-size: 1.2em;
             color: rgba(255, 255, 255, 0.95);
             font-weight: 400;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .enter-btn {
-            padding: 20px 60px;
-            font-size: 1.3em;
-            font-weight: 600;
-            color: var(--love-red);
+            padding: 15px 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--warm-orange);
             background: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            font-family: 'Quicksand', sans-serif;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .enter-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         }
 
         /* Main container */
@@ -147,754 +140,351 @@
             position: relative;
             z-index: 10;
             opacity: 0;
-            transition: opacity 2s ease;
+            transition: opacity 1.5s ease;
         }
 
         .main-container.visible {
             opacity: 1;
         }
 
-        /* Hero section */
+        /* Hero section - compact */
         .hero-section {
-            min-height: 90vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            background: linear-gradient(to bottom, var(--warm-cream), var(--soft-pink));
-            padding: 20px;
+            background: linear-gradient(to bottom, var(--light-cream), var(--cream));
+            padding: 40px 15px;
+            text-align: center;
         }
 
         .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 900px;
+            max-width: 600px;
         }
 
         .hero-emoji {
-            font-size: 8em;
-            margin-bottom: 30px;
-            animation: gentle-bounce 2s ease-in-out infinite;
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: gentle-sway 3s ease-in-out infinite;
         }
 
-        @keyframes gentle-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes gentle-sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
 
         .hero-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 5em;
-            color: var(--love-red);
-            margin-bottom: 25px;
+            font-family: 'Caveat', cursive;
+            font-size: 3.5em;
+            color: var(--warm-orange);
+            margin-bottom: 15px;
             line-height: 1.2;
         }
 
         .hero-subtitle {
-            font-size: 1.8em;
-            color: var(--soft-gray);
-            font-weight: 400;
-            margin-bottom: 40px;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce-arrow 2s infinite;
-            color: var(--deep-rose);
-            font-size: 2em;
-        }
-
-        @keyframes bounce-arrow {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-15px); }
-        }
-
-        /* Section styling */
-        .section {
-            padding: 80px 20px;
-            position: relative;
-        }
-
-        .section-content {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        /* Promise sections with unique layouts */
-        .promise-section {
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
-        }
-
-        .promise-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Promise 1: Polaroid style with rotation */
-        .promise-1 {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .promise-1 .image-container {
-            flex: 1;
-            perspective: 1000px;
-        }
-
-        .polaroid {
-            background: white;
-            padding: 20px 20px 80px 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            transform: rotate(-5deg);
-            transition: all 0.6s ease;
-            position: relative;
-        }
-
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .polaroid-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8em;
-            color: var(--soft-gray);
-            text-align: center;
-        }
-
-        /* Promise 2: Heart-shaped clip with pulse */
-        .promise-2 {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-direction: row-reverse;
-        }
-
-        .promise-2 .image-container {
-            flex: 1;
-            position: relative;
-        }
-
-        .heart-frame {
-            position: relative;
-            animation: gentle-pulse 3s ease-in-out infinite;
-        }
-
-        .heart-frame img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            clip-path: polygon(
-                50% 10%, 58% 5%, 67% 5%, 75% 10%, 80% 18%, 
-                83% 28%, 83% 40%, 80% 50%, 75% 58%, 68% 65%, 
-                60% 72%, 50% 85%, 40% 72%, 32% 65%, 25% 58%, 
-                20% 50%, 17% 40%, 17% 28%, 20% 18%, 25% 10%, 
-                33% 5%, 42% 5%
-            );
-            filter: brightness(1.05);
-            transition: all 0.6s ease;
-        }
-
-        .heart-frame:hover img {
-            transform: scale(1.1);
-            filter: brightness(1.15);
-        }
-
-        @keyframes gentle-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        /* Promise 3: Circular vignette with spin */
-        .promise-3 {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .promise-3 .image-container {
-            flex: 1;
-            position: relative;
-        }
-
-        .circle-frame {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            margin: 0 auto;
-        }
-
-        .circle-frame::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            border: 3px dashed var(--rose-gold);
-            border-radius: 50%;
-            animation: rotate-border 30s linear infinite;
-        }
-
-        @keyframes rotate-border {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .circle-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 15px solid white;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
-            transition: all 0.6s ease;
-        }
-
-        .circle-frame:hover img {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Promise content styling */
-        .promise-content {
-            flex: 1;
-            padding: 30px;
-        }
-
-        .promise-emoji {
-            font-size: 4em;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: emoji-wiggle 2s ease-in-out infinite;
-        }
-
-        @keyframes emoji-wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
-        }
-
-        .promise-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5em;
-            color: var(--love-red);
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-
-        .promise-text {
             font-size: 1.3em;
-            color: var(--charcoal);
-            line-height: 1.9;
-            margin-bottom: 20px;
+            color: var(--soft-gray);
             font-weight: 400;
         }
 
-        /* Love letter section */
-        .love-letter-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, var(--soft-pink), var(--lavender));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .love-letter-section::before {
-            content: '💕';
-            position: absolute;
-            font-size: 30em;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .letter-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 60px 50px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-            border-radius: 20px;
+        /* Compact section */
+        .section {
+            padding: 40px 15px;
             position: relative;
         }
 
-        .letter-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .letter-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 4em;
-            color: var(--love-red);
-            margin-bottom: 15px;
-        }
-
-        .letter-to {
-            font-family: 'Dancing Script', cursive;
+        .section-title {
+            font-family: 'Caveat', cursive;
             font-size: 2.5em;
-            color: var(--soft-gray);
-        }
-
-        .letter-body p {
-            font-size: 1.25em;
-            color: var(--charcoal);
-            line-height: 2;
-            margin-bottom: 30px;
-            text-align: justify;
-        }
-
-        .letter-signature {
-            text-align: right;
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5em;
-            color: var(--love-red);
-            margin-top: 50px;
-        }
-
-        /* Gallery section */
-        .gallery-section {
-            padding: 80px 20px;
-            background: var(--warm-cream);
-        }
-
-        .gallery-header {
+            color: var(--warm-orange);
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 25px;
         }
 
-        .gallery-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 4.5em;
-            color: var(--love-red);
-            margin-bottom: 20px;
-        }
-
-        .gallery-subtitle {
-            font-size: 1.6em;
-            color: var(--soft-gray);
-        }
-
-        .gallery-grid {
+        /* Image grid - multiple images per row */
+        .image-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1300px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto 30px;
         }
 
-        .gallery-item {
+        .grid-item {
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(212, 69, 110, 0.3);
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 154, 86, 0.3);
         }
 
-        .gallery-item img {
+        .grid-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.15);
+        .grid-item:hover img {
+            transform: scale(1.1);
         }
 
-        .gallery-item.tall {
-            grid-row: span 2;
-        }
-
-        .gallery-overlay {
+        .grid-caption {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 10px;
+            background: rgba(45, 45, 45, 0.85);
             color: white;
-            font-size: 1.2em;
-            font-family: 'Dancing Script', cursive;
+            font-size: 0.85em;
+            text-align: center;
             transform: translateY(100%);
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover .gallery-overlay {
+        .grid-item:hover .grid-caption {
             transform: translateY(0);
         }
 
-        /* Six promises */
-        .six-promises-section {
-            padding: 80px 20px;
-            background: var(--soft-pink);
-        }
-
-        .promises-grid {
+        /* Hug types - compact cards */
+        .hug-types {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             max-width: 1200px;
-            margin: 60px auto 0;
-        }
-
-        .promise-card {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promise-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(232, 180, 168, 0.2), transparent);
-            transform: scale(0);
-            transition: transform 0.6s ease;
-        }
-
-        .promise-card:hover::before {
-            transform: scale(1);
-        }
-
-        .promise-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 70px rgba(212, 69, 110, 0.2);
-        }
-
-        .card-emoji {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .card-number {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5em;
-            color: var(--rose-gold);
-            margin-bottom: 20px;
-        }
-
-        .card-promise {
-            font-size: 1.2em;
-            color: var(--charcoal);
-            line-height: 1.9;
-        }
-
-        /* Forever section */
-        .forever-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, var(--love-red), var(--deep-rose));
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .forever-section::before {
-            content: '∞';
-            position: absolute;
-            font-size: 40em;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg);
-        }
-
-        .forever-content {
-            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .hug-card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .hug-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 154, 86, 0.2);
+        }
+
+        .hug-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .hug-name {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8em;
+            color: var(--warm-orange);
+            margin-bottom: 10px;
+        }
+
+        .hug-desc {
+            font-size: 0.95em;
+            color: var(--soft-gray);
+            line-height: 1.6;
+        }
+
+        /* Message section - warm and cozy */
+        .message-section {
+            padding: 50px 15px;
+            background: linear-gradient(135deg, var(--warm-orange), var(--peach));
+            text-align: center;
+        }
+
+        .message-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8em;
+            color: var(--warm-orange);
+            margin-bottom: 20px;
+        }
+
+        .message-text {
+            font-size: 1.1em;
+            color: var(--charcoal);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .message-signature {
+            font-family: 'Caveat', cursive;
+            font-size: 2em;
+            color: var(--warm-orange);
+            margin-top: 25px;
+        }
+
+        /* Compact gallery - 3 images per row on mobile */
+        .compact-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .compact-item {
             position: relative;
-            z-index: 2;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1;
+            cursor: pointer;
         }
 
-        .forever-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 5em;
-            margin-bottom: 30px;
+        .compact-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .forever-text {
-            font-size: 1.6em;
-            line-height: 2;
-            margin-bottom: 25px;
-            font-weight: 400;
+        .compact-item:hover img {
+            transform: scale(1.15);
         }
 
-        /* Footer */
+        /* Reasons section - inline list */
+        .reasons-section {
+            padding: 40px 15px;
+            background: var(--cream);
+        }
+
+        .reasons-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .reason-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--warm-orange);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .reason-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(255, 154, 86, 0.2);
+        }
+
+        .reason-emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .reason-text {
+            font-size: 1em;
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+
+        /* Footer - compact */
         .footer {
             text-align: center;
-            padding: 60px 20px;
-            background: var(--warm-cream);
+            padding: 40px 15px;
+            background: var(--light-cream);
         }
 
-        .footer-heart {
-            font-size: 6em;
-            margin-bottom: 30px;
-            animation: heartbeat 1.5s ease-in-out infinite;
+        .footer-emoji {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: hugBounce 1.5s ease-in-out infinite;
         }
 
         .footer-text {
-            font-size: 1.8em;
+            font-size: 1.3em;
             color: var(--charcoal);
-            margin: 20px 0;
-            font-family: 'Quicksand', sans-serif;
+            margin: 10px 0;
         }
 
         .footer-date {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3em;
-            color: var(--love-red);
-            margin-top: 30px;
+            font-family: 'Caveat', cursive;
+            font-size: 2.2em;
+            color: var(--warm-orange);
+            margin-top: 15px;
         }
 
-        /* Responsive - Mobile First */
+        /* Mobile optimizations */
         @media (max-width: 768px) {
             .opening-title {
                 font-size: 2.2em;
-                padding: 0 20px;
             }
 
-            .opening-subtitle {
-                font-size: 1.1em;
-                padding: 0 20px;
-            }
-
-            .beating-heart {
-                font-size: 6em;
-            }
-
-            .enter-btn {
-                padding: 15px 40px;
-                font-size: 1.1em;
+            .hug-animation {
+                font-size: 5em;
             }
 
             .hero-emoji {
-                font-size: 5em;
+                font-size: 4em;
             }
 
             .hero-title {
                 font-size: 2.5em;
-                padding: 0 15px;
             }
 
             .hero-subtitle {
-                font-size: 1.2em;
-                padding: 0 20px;
-            }
-
-            .section {
-                padding: 60px 15px;
-            }
-            
-            .promise-1, .promise-2, .promise-3 {
-                flex-direction: column;
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-
-            .promise-content {
-                padding: 20px;
-            }
-
-            .promise-emoji {
-                font-size: 3em;
-            }
-            
-            .promise-title {
-                font-size: 2em;
-                margin-bottom: 15px;
-            }
-
-            .promise-text {
                 font-size: 1.1em;
-                margin-bottom: 15px;
             }
 
-            /* Polaroid mobile */
-            .polaroid {
-                padding: 15px 15px 60px 15px;
-            }
-
-            .polaroid img {
-                height: 350px;
-            }
-
-            .polaroid-caption {
-                font-size: 1.3em;
-                bottom: 15px;
-            }
-
-            /* Heart frame mobile */
-            .heart-frame img {
-                height: 400px;
-            }
-
-            /* Circle frame mobile */
-            .circle-frame {
-                width: 320px;
-                height: 320px;
-            }
-
-            .circle-frame img {
-                border: 10px solid white;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .gallery-item.tall {
-                grid-row: span 1;
-            }
-
-            .gallery-section {
-                padding: 80px 15px;
-            }
-
-            .gallery-header {
-                margin-bottom: 50px;
-            }
-
-            .gallery-title {
-                font-size: 2.5em;
-                padding: 0 15px;
-            }
-
-            .gallery-subtitle {
-                font-size: 1.2em;
-                padding: 0 15px;
-            }
-            
-            .promises-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                margin: 50px auto 0;
-            }
-
-            .promise-card {
-                padding: 35px 25px;
-            }
-
-            .card-emoji {
-                font-size: 2.5em;
-            }
-
-            .card-number {
-                font-size: 1.8em;
-            }
-
-            .card-promise {
-                font-size: 1.05em;
-            }
-
-            .six-promises-section {
-                padding: 80px 15px;
-            }
-            
-            .love-letter-section {
-                padding: 80px 15px;
-            }
-
-            .letter-container {
-                padding: 40px 25px;
-            }
-
-            .letter-title {
-                font-size: 2.5em;
-            }
-
-            .letter-to {
-                font-size: 1.8em;
-            }
-
-            .letter-body p {
-                font-size: 1.05em;
-                line-height: 1.8;
-                margin-bottom: 20px;
-                text-align: left;
-            }
-
-            .letter-signature {
+            .section-title {
                 font-size: 2em;
-                margin-top: 30px;
             }
 
-            .forever-section {
-                padding: 80px 15px;
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
 
-            .forever-title {
-                font-size: 3em;
-                padding: 0 15px;
+            .hug-types {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
 
-            .forever-text {
-                font-size: 1.2em;
-                line-height: 1.8;
-                margin-bottom: 20px;
-                padding: 0 15px;
+            .hug-card {
+                padding: 20px 15px;
             }
 
-            .footer {
-                padding: 60px 15px;
+            .message-box {
+                padding: 30px 20px;
             }
 
-            .footer-heart {
-                font-size: 4em;
-            }
-
-            .footer-text {
-                font-size: 1.3em;
-                padding: 0 15px;
-            }
-
-            .footer-date {
+            .message-title {
                 font-size: 2.2em;
             }
 
-            .scroll-hint {
-                bottom: 20px;
-                font-size: 1.5em;
+            .message-text {
+                font-size: 1em;
             }
 
-            /* Compact animations for mobile */
-            .gallery-overlay {
-                padding: 20px;
-                font-size: 1em;
+            .compact-gallery {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+
+            .reasons-list {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
         }
 
@@ -903,71 +493,63 @@
                 font-size: 1.8em;
             }
 
-            .beating-heart {
-                font-size: 5em;
-            }
-
             .hero-title {
                 font-size: 2em;
             }
 
-            .hero-subtitle {
-                font-size: 1.1em;
+            .section {
+                padding: 30px 10px;
             }
 
-            .promise-title {
-                font-size: 1.8em;
+            .message-section {
+                padding: 35px 10px;
             }
 
-            .promise-text {
+            .enter-btn {
+                padding: 12px 35px;
                 font-size: 1em;
             }
 
-            .polaroid img {
-                height: 280px;
+            .compact-gallery {
+                gap: 5px;
             }
 
-            .heart-frame img {
-                height: 320px;
+            .grid-item {
+                border-radius: 10px;
             }
 
-            .circle-frame {
-                width: 280px;
-                height: 280px;
+            .compact-item {
+                border-radius: 8px;
             }
+        }
 
-            .gallery-title {
-                font-size: 2em;
-            }
+        /* Smooth scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce-hint 2s infinite;
+            color: var(--warm-orange);
+            font-size: 2em;
+        }
 
-            .letter-title {
-                font-size: 2em;
-            }
-
-            .letter-to {
-                font-size: 1.5em;
-            }
-
-            .forever-title {
-                font-size: 2.5em;
-            }
-
-            .forever-text {
-                font-size: 1.1em;
-            }
+        @keyframes bounce-hint {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
     </style>
 </head>
 <body>
-    <!-- Floating hearts -->
-    <div class="hearts-bg" id="heartsBg"></div>
+    <!-- Floating hugs background -->
+    <div class="warm-bg" id="warmBg"></div>
 
     <!-- Opening screen -->
     <div class="opening-screen" id="openingScreen">
-        <div class="beating-heart">💕</div>
-        <div class="opening-title">My Heart's Promise</div>
-        <p class="opening-subtitle">A love letter written in promises</p>
-        <button class="enter-btn" onclick="enterSite()">Open Your Heart 💝</button>
+        <div class="hug-animation">🤗</div>
+        <div class="opening-title">Hug Day Special</div>
+        <p class="opening-subtitle">Wrapped in warmth, sealed with love</p>
+        <button class="enter-btn" onclick="enterSite()">Come Get a Hug! 🫂</button>
     </div>
 
     <!-- Main content -->
@@ -975,234 +557,180 @@
         <!-- Hero section -->
         <section class="hero-section">
             <div class="hero-content">
-                <div class="hero-emoji">💖</div>
-                <h1 class="hero-title">Hey Beautiful!</h1>
-                <p class="hero-subtitle">Here are my promises to you, straight from my heart...</p>
+                <div class="hero-emoji">🫂</div>
+                <h1 class="hero-title">Happy Hug Day!</h1>
+                <p class="hero-subtitle">Every hug with you feels like coming home 💕</p>
             </div>
             <div class="scroll-hint">↓</div>
         </section>
 
-        <!-- Promise sections -->
+        <!-- Our moments gallery -->
         <section class="section">
-            <div class="section-content">
-                <!-- Promise 1: Your Smile -->
-                <div class="promise-section promise-1">
-                    <div class="image-container">
-                        <div class="polaroid">
-                            <img src="./images/smile.png" alt="Your beautiful smile" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1000&fit=crop'">
-                            <div class="polaroid-caption">Your smile = My world ✨</div>
-                        </div>
-                    </div>
-                    <div class="promise-content">
-                        <div class="promise-emoji">😊</div>
-                        <h2 class="promise-title">I promise to keep you smiling</h2>
-                        <p class="promise-text">
-                            You know what? Your smile literally lights up my entire day. Like, I'm not even exaggerating! Every single time I see you smile, my heart does this little happy dance, and I can't help but smile back like an idiot.
-                        </p>
-                        <p class="promise-text">
-                            So here's my promise, babe: I'm gonna do everything in my power to keep that beautiful smile on your face. Whether it's sending you silly memes at 2 AM, surprising you with your favorite snacks, or just being there to make you laugh when you need it most – your happiness is literally my favorite thing in the whole world. 💕
-                        </p>
-                    </div>
+            <h2 class="section-title">Our Cozy Moments Together 🌟</h2>
+            <div class="image-grid">
+                <div class="grid-item">
+                    <img src="./images/smile.png" alt="Your smile" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=300&h=300&fit=crop'">
+                    <div class="grid-caption">Your warmth ✨</div>
                 </div>
-
-                <!-- Promise 2: Strength -->
-                <div class="promise-section promise-2">
-                    <div class="image-container">
-                        <div class="heart-frame">
-                            <img src="./images/Perfect.png" alt="My rock" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&h=1000&fit=crop'">
-                        </div>
-                    </div>
-                    <div class="promise-content">
-                        <div class="promise-emoji">💪</div>
-                        <h2 class="promise-title">I promise to be your rock</h2>
-                        <p class="promise-text">
-                            Listen, I know life can be tough sometimes. We all have those days where everything feels too heavy, you know? But here's the thing – you never have to carry that weight alone. Not anymore.
-                        </p>
-                        <p class="promise-text">
-                            I promise to be right there beside you, always. When you're feeling weak, lean on me. When you're doubting yourself, I'll remind you how incredible you are. When the world gets too loud, I'll be your peace. You're so much stronger than you think, and even on your worst days, I'll be here reminding you of that. We're in this together, babe. Always. 💪❤️
-                        </p>
-                    </div>
+                <div class="grid-item">
+                    <img src="./images/Perfect.png" alt="Perfect" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop'">
+                    <div class="grid-caption">Perfect fit 🤗</div>
                 </div>
-
-                <!-- Promise 3: Cherish -->
-                <div class="promise-section promise-3">
-                    <div class="image-container">
-                        <div class="circle-frame">
-                            <img src="./images/elegant.png" alt="My precious one" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=1000&fit=crop'">
-                        </div>
-                    </div>
-                    <div class="promise-content">
-                        <div class="promise-emoji">👑</div>
-                        <h2 class="promise-title">I promise to cherish every part of you</h2>
-                        <p class="promise-text">
-                            Okay, so here's something I need you to understand: You're not just beautiful – you're absolutely breathtaking. And I'm not just talking about how you look (though wow, seriously WOW), but everything about who you are.
-                        </p>
-                        <p class="promise-text">
-                            Your quirky laugh, the way you scrunch your nose when you're thinking, your weird obsessions, your insecurities, your dreams, your fears – all of it. Every single piece of you is precious to me. I promise to treat your heart with the gentleness it deserves, to respect you always, and to make sure you feel valued and loved every single day. You deserve the world, and I'm gonna spend forever trying to give it to you. 👑💕
-                        </p>
-                    </div>
+                <div class="grid-item">
+                    <img src="./images/elegant.png" alt="Elegant" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop'">
+                    <div class="grid-caption">My comfort 💖</div>
+                </div>
+                <div class="grid-item">
+                    <img src="./images/queen.png" alt="Queen" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=300&h=300&fit=crop'">
+                    <div class="grid-caption">My safe place 👑</div>
+                </div>
+                <div class="grid-item">
+                    <img src="./images/natural.png" alt="Natural" onerror="this.src='https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=300&h=300&fit=crop'">
+                    <div class="grid-caption">Pure joy 🌸</div>
+                </div>
+                <div class="grid-item">
+                    <img src="./images/mine.png" alt="Mine" onerror="this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=300&h=300&fit=crop'">
+                    <div class="grid-caption">Forever mine 💕</div>
                 </div>
             </div>
         </section>
 
-        <!-- Love letter -->
-        <section class="love-letter-section">
-            <div class="letter-container">
-                <div class="letter-header">
-                    <h2 class="letter-title">A Letter to You</h2>
-                    <p class="letter-to">To the one who owns my heart 💝</p>
+        <!-- Types of hugs -->
+        <section class="section" style="background: var(--cream);">
+            <h2 class="section-title">All the Hugs I Want to Give You 🤗</h2>
+            <div class="hug-types">
+                <div class="hug-card">
+                    <div class="hug-icon">🌅</div>
+                    <div class="hug-name">Good Morning Hug</div>
+                    <div class="hug-desc">The one that starts your day with warmth and makes everything feel right</div>
                 </div>
-                <div class="letter-body">
-                    <p>
-                        Hey love,
-                    </p>
-                    <p>
-                        I know I'm not always great with words, but on this Promise Day, I wanted to pour my heart out to you. These aren't just empty promises written down to sound romantic – these are real, from-the-bottom-of-my-heart commitments that I'm making to you.
-                    </p>
-                    <p>
-                        Every single day with you feels like a gift. You make me want to be better, do better, love better. And I promise you this: I'm going to wake up every morning and choose you. Choose us. Choose this beautiful thing we're building together.
-                    </p>
-                    <p>
-                        You deserve someone who sees you – really sees you – and loves every single thing they see. Someone who celebrates your victories like they're their own and holds you tight through your struggles. Someone who makes you feel safe, cherished, and absolutely adored.
-                    </p>
-                    <p>
-                        I want to be that someone. Actually, scratch that – I AM that someone. And these promises? They're not for today or tomorrow. They're for every single day we have together, for as long as you'll have me.
-                    </p>
-                    <p>
-                        Thank you for being you. Thank you for letting me love you. Thank you for being my person. 💕
-                    </p>
+                <div class="hug-card">
+                    <div class="hug-icon">😊</div>
+                    <div class="hug-name">Just Because Hug</div>
+                    <div class="hug-desc">Random hugs throughout the day because I can't resist holding you close</div>
                 </div>
-                <p class="letter-signature">Forever yours 💖</p>
-            </div>
-        </section>
-
-        <!-- Photo gallery -->
-        <section class="gallery-section">
-            <div class="gallery-header">
-                <h2 class="gallery-title">Our Moments Together</h2>
-                <p class="gallery-subtitle">Every picture tells our story 📸</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item tall">
-                    <img src="./images/queen.png" alt="My queen" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600&h=900&fit=crop'">
-                    <div class="gallery-overlay">You're my forever queen 👑</div>
+                <div class="hug-card">
+                    <div class="hug-icon">💪</div>
+                    <div class="hug-name">I Got You Hug</div>
+                    <div class="hug-desc">When life gets tough and you need to know I'm right here with you</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="./images/natural.png" alt="Natural beauty" onerror="this.src='https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=600&h=400&fit=crop'">
-                    <div class="gallery-overlay">Naturally perfect 🌸</div>
+                <div class="hug-card">
+                    <div class="hug-icon">🎉</div>
+                    <div class="hug-name">Celebration Hug</div>
+                    <div class="hug-desc">The excited one where I lift you up and spin you around in joy!</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="./images/mine.png" alt="Mine forever" onerror="this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=600&h=400&fit=crop'">
-                    <div class="gallery-overlay">My one and only 💕</div>
+                <div class="hug-card">
+                    <div class="hug-icon">🌙</div>
+                    <div class="hug-name">Goodnight Hug</div>
+                    <div class="hug-desc">The longest one that I never want to let go of before we sleep</div>
                 </div>
-                <div class="gallery-item tall">
-                    <img src="./images/smile.png" alt="That smile" onerror="this.src='https://images.unsplash.com/photo-1515077678510-ce3bdf418862?w=600&h=900&fit=crop'">
-                    <div class="gallery-overlay">This smile melts my heart 😍</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/Perfect.png" alt="Perfect" onerror="this.src='https://images.unsplash.com/photo-1496440737103-cd596325d314?w=600&h=400&fit=crop'">
-                    <div class="gallery-overlay">Perfectly us ❤️</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/elegant.png" alt="Elegant" onerror="this.src='https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&h=400&fit=crop'">
-                    <div class="gallery-overlay">Grace personified ✨</div>
+                <div class="hug-card">
+                    <div class="hug-icon">💖</div>
+                    <div class="hug-name">I Love You Hug</div>
+                    <div class="hug-desc">The one that says everything my heart feels without words</div>
                 </div>
             </div>
         </section>
 
-        <!-- Six promises -->
-        <section class="six-promises-section">
-            <div class="section-content">
-                <div class="gallery-header">
-                    <h2 class="gallery-title">Six Promises from My Heart</h2>
-                    <p class="gallery-subtitle">These are my vows to you 💝</p>
-                </div>
-                <div class="promises-grid">
-                    <div class="promise-card">
-                        <div class="card-emoji">💕</div>
-                        <div class="card-number">Promise One</div>
-                        <div class="card-promise">
-                            I promise to love you exactly as you are – with all your perfections, imperfections, quirks, and everything in between. You don't need to change a single thing. You're already everything I want.
-                        </div>
-                    </div>
-                    <div class="promise-card">
-                        <div class="card-emoji">👂</div>
-                        <div class="card-number">Promise Two</div>
-                        <div class="card-promise">
-                            I promise to really listen to you – not just hear your words, but understand your heart. Your thoughts, feelings, and dreams matter to me more than anything else in this world.
-                        </div>
-                    </div>
-                    <div class="promise-card">
-                        <div class="card-emoji">🌱</div>
-                        <div class="card-number">Promise Three</div>
-                        <div class="card-promise">
-                            I promise to grow with you, not apart. As we both change and evolve, I'll make sure we're doing it together, building a future that makes both our hearts happy.
-                        </div>
-                    </div>
-                    <div class="promise-card">
-                        <div class="card-emoji">🛡️</div>
-                        <div class="card-number">Promise Four</div>
-                        <div class="card-promise">
-                            I promise to protect your heart like it's the most precious thing in the universe (because it is). I'll be honest with you, gentle with you, and create a love that feels like home.
-                        </div>
-                    </div>
-                    <div class="promise-card">
-                        <div class="card-emoji">🌅</div>
-                        <div class="card-number">Promise Five</div>
-                        <div class="card-promise">
-                            I promise to choose you every single day. Love isn't just butterflies – it's waking up every morning and deciding "yes, you, always you." And that's exactly what I'm committing to.
-                        </div>
-                    </div>
-                    <div class="promise-card">
-                        <div class="card-emoji">💍</div>
-                        <div class="card-number">Promise Six</div>
-                        <div class="card-promise">
-                            I promise that these aren't just pretty words. These promises are my real, genuine commitment to you – the foundation of everything I want to build with you. This is forever, babe.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Forever section -->
-        <section class="forever-section">
-            <div class="forever-content">
-                <h2 class="forever-title">You & Me = Forever</h2>
-                <p class="forever-text">
-                    Like infinity, my love for you has no end. No beginning. Just endless devotion, endless care, endless us.
+        <!-- Heart message -->
+        <section class="message-section">
+            <div class="message-box">
+                <h2 class="message-title">A Warm Hug for You 🫂</h2>
+                <p class="message-text">
+                    Hey you! On this Hug Day, I just want you to know that your hugs are literally my favorite place in the entire world. Like, seriously!
                 </p>
-                <p class="forever-text">
-                    These promises aren't contracts – they're my heart speaking to yours, promising to love you better with each passing day.
+                <p class="message-text">
+                    Every time you wrap your arms around me, everything else just fades away. All the stress, the worries, the chaos – it all disappears, and it's just us. That's the magic you bring into my life.
                 </p>
-                <p class="forever-text">
-                    So here's to us, to our journey, to every moment we'll share. Thank you for being mine. Thank you for letting me be yours. 💕
+                <p class="message-text">
+                    I love how your hugs can make a bad day better, a good day perfect, and any moment instantly special. They're like a warm blanket for my soul, and I'm so grateful I get to be hugged by you.
                 </p>
+                <p class="message-text">
+                    So here's to all our hugs – the quick ones, the long ones, the tight ones, the gentle ones. Every single one is precious to me. Thank you for being my safe haven, my comfort, my home. 💕
+                </p>
+                <div class="message-signature">Forever your hugger 🤗</div>
+            </div>
+        </section>
+
+        <!-- Compact photo grid -->
+        <section class="section">
+            <h2 class="section-title">Moments Worth Hugging For 📸</h2>
+            <div class="compact-gallery">
+                <div class="compact-item">
+                    <img src="./images/smile.png" alt="Smile" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=250&h=250&fit=crop'">
+                </div>
+                <div class="compact-item">
+                    <img src="./images/Perfect.png" alt="Perfect" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=250&h=250&fit=crop'">
+                </div>
+                <div class="compact-item">
+                    <img src="./images/elegant.png" alt="Elegant" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=250&h=250&fit=crop'">
+                </div>
+                <div class="compact-item">
+                    <img src="./images/queen.png" alt="Queen" onerror="this.src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=250&h=250&fit=crop'">
+                </div>
+                <div class="compact-item">
+                    <img src="./images/natural.png" alt="Natural" onerror="this.src='https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=250&h=250&fit=crop'">
+                </div>
+                <div class="compact-item">
+                    <img src="./images/mine.png" alt="Mine" onerror="this.src='https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=250&h=250&fit=crop'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons for hugs -->
+        <section class="reasons-section">
+            <h2 class="section-title">Why I Love Your Hugs 💕</h2>
+            <div class="reasons-list">
+                <div class="reason-item">
+                    <div class="reason-emoji">🏠</div>
+                    <div class="reason-text">They feel like home</div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-emoji">☀️</div>
+                    <div class="reason-text">They brighten my day</div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-emoji">🛡️</div>
+                    <div class="reason-text">They make me feel safe</div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-emoji">💆</div>
+                    <div class="reason-text">They calm my worries</div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-emoji">❤️</div>
+                    <div class="reason-text">They speak pure love</div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-emoji">✨</div>
+                    <div class="reason-text">They're simply magical</div>
+                </div>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-heart">💖</div>
-            <p class="footer-text">These promises are forever</p>
-            <p class="footer-text">Sealed with all my love</p>
-            <p class="footer-date">Promise Day 2026</p>
+            <div class="footer-emoji">🤗</div>
+            <p class="footer-text">Sending you endless hugs</p>
+            <p class="footer-text">Wrapped in all my love</p>
+            <p class="footer-date">Hug Day 2026</p>
         </footer>
     </div>
 
     <script>
-        // Create floating hearts
-        function createHearts() {
-            const container = document.getElementById('heartsBg');
-            const hearts = ['💕', '💖', '💗', '💝', '💓', '💞'];
+        // Create floating hug emojis
+        function createHugEmojis() {
+            const container = document.getElementById('warmBg');
+            const emojis = ['🤗', '🫂', '💕', '🧡', '💛', '🌟'];
             
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                container.appendChild(heart);
+            for (let i = 0; i < 15; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'hug-emoji';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + '%';
+                emoji.style.animationDelay = Math.random() * 5 + 's';
+                emoji.style.animationDuration = (Math.random() * 8 + 12) + 's';
+                container.appendChild(emoji);
             }
         }
 
@@ -1214,66 +742,50 @@
             opening.classList.add('hidden');
             setTimeout(() => {
                 main.classList.add('visible');
-            }, 1500);
+            }, 1200);
         }
 
         // Initialize
-        createHearts();
+        createHugEmojis();
 
-        // Scroll reveal
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Lazy load images for better performance
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '0';
+                        img.style.transition = 'opacity 0.3s ease';
+                        setTimeout(() => {
+                            img.style.opacity = '1';
+                        }, 100);
+                        observer.unobserve(img);
+                    }
+                });
+            });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            document.querySelectorAll('img').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Add smooth animations on scroll
+        const cards = document.querySelectorAll('.hug-card, .reason-item');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 50);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // Observe sections
-        document.querySelectorAll('.promise-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Gallery items animation
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = 'all 0.6s ease';
-            item.style.transitionDelay = (index * 0.1) + 's';
-            
-            const itemObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            itemObserver.observe(item);
-        });
-
-        // Promise cards animation
-        document.querySelectorAll('.promise-card').forEach((card, index) => {
+        cards.forEach(card => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.8s ease';
-            card.style.transitionDelay = (index * 0.15) + 's';
-            
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
             cardObserver.observe(card);
         });
     </script>
